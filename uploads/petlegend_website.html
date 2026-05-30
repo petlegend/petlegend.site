@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>펫레전드 | Pet Legend</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C8956C; --gold-light:#E8B98A; --gold-dark:#9A6940; --gold-bg:#FBF5EF;
+  --navy:#1A2B4A; --navy-light:#2D4070;
+  --text:#1E1E1E; --text-muted:#6B6B6B; --border:#E8DDD4;
+  --white:#FFFFFF; --section-bg:#FAFAF8;
+  --radius:4px;
+  --serif:'Noto Serif KR','Playfair Display',serif;
+  --sans:'Noto Sans KR','Montserrat',sans-serif;
+  --logo-color:var(--gold);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7;font-size:15px;}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px);transition:box-shadow .3s;}
+header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08);}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:72px;}
+.logo-wrap{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-circle{width:40px;height:40px;border-radius:50%;background:var(--logo-color);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.logo-circle span{color:#fff;font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:-.5px;}
+#logo-text-el{font-family:var(--sans);font-weight:700;font-size:18px;color:var(--gold-dark);letter-spacing:.5px;transition:color .3s;}
+nav{display:flex;gap:28px;align-items:center;}
+nav a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;padding:4px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+nav a:hover{color:var(--gold);border-bottom-color:var(--gold);}
+.header-right{display:flex;align-items:center;gap:16px;}
+.lang-switcher{display:flex;gap:6px;}
+.lang-btn{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 11px;font-size:12px;font-weight:600;
+  border:1px solid var(--border);border-radius:20px;
+  background:transparent;cursor:pointer;
+  color:var(--text-muted);transition:all .2s;
+  letter-spacing:.3px;
+}
+.lang-flag{font-size:14px;line-height:1;}
+.lang-code{font-size:11px;font-weight:700;letter-spacing:.5px;}
+.lang-btn.active{
+  background:var(--gold);color:#fff;border-color:var(--gold);
+  box-shadow:0 2px 8px rgba(200,149,108,.35);
+}
+.lang-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);background:var(--gold-bg);}
+.admin-btn{padding:8px 18px;font-size:13px;font-weight:500;background:var(--navy);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;transition:background .2s;}
+.admin-btn:hover{background:var(--navy-light);}
+
+/* HERO */
+#hero{min-height:100vh;background:linear-gradient(135deg,#1A2B4A 0%,#2D4070 40%,#1A2B4A 100%);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:72px;}
+.hero-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(200,149,108,.15) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(200,149,108,.10) 0%,transparent 40%);pointer-events:none;}
+.hero-grid{position:absolute;inset:0;opacity:.04;background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);background-size:60px 60px;}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;}
+.hero-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px;}
+.hero-title{font-family:var(--serif);font-size:clamp(34px,4vw,54px);font-weight:600;color:#fff;line-height:1.25;margin-bottom:24px;}
+.hero-title em{color:var(--gold-light);font-style:normal;}
+.hero-desc{font-size:16px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:40px;max-width:480px;}
+.hero-btns{display:flex;gap:16px;}
+.btn-primary{padding:14px 32px;background:var(--gold);color:#fff;text-decoration:none;font-weight:600;font-size:14px;border-radius:var(--radius);transition:background .2s,transform .2s;border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--gold-dark);transform:translateY(-1px);}
+.btn-outline{padding:14px 32px;border:1px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;font-weight:500;font-size:14px;border-radius:var(--radius);transition:all .2s;}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7);}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.stat-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:24px;transition:background .2s;}
+.stat-card:hover{background:rgba(255,255,255,.11);}
+.stat-num{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--gold-light);line-height:1;margin-bottom:8px;}
+.stat-label{font-size:13px;color:rgba(255,255,255,.65);}
+
+/* COMMON */
+section{padding:100px 40px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-tag{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.section-title{font-family:var(--serif);font-size:clamp(28px,3vw,42px);font-weight:600;color:var(--navy);margin-bottom:16px;line-height:1.3;}
+.section-desc{font-size:16px;color:var(--text-muted);max-width:640px;line-height:1.8;}
+.divider{width:48px;height:3px;background:var(--gold);margin:20px 0;}
+
+/* ABOUT */
+#about{background:var(--white);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:60px;}
+.about-info-table{width:100%;border-collapse:collapse;}
+.about-info-table tr{border-bottom:1px solid var(--border);}
+.about-info-table td{padding:14px 0;font-size:14px;vertical-align:top;}
+.about-info-table td:first-child{color:var(--text-muted);font-weight:500;width:120px;min-width:100px;}
+.office-card{border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:16px;transition:border-color .2s;}
+.office-card:hover{border-color:var(--gold);}
+.office-flag{font-size:20px;margin-bottom:10px;}
+.office-name{font-weight:600;font-size:15px;color:var(--navy);margin-bottom:8px;}
+.office-detail{font-size:13px;color:var(--text-muted);line-height:1.7;}
+
+/* CEO */
+#ceo{background:var(--section-bg);}
+.ceo-grid{display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;margin-top:60px;}
+.ceo-card{background:var(--navy);border-radius:8px;overflow:hidden;text-align:center;}
+#ceo-photo-display{width:100%;height:280px;object-fit:cover;display:block;}
+.ceo-img-placeholder{width:100%;height:280px;background:linear-gradient(160deg,var(--navy-light),var(--navy));display:flex;align-items:center;justify-content:center;font-size:80px;color:rgba(255,255,255,.15);}
+.ceo-name-block{padding:24px;}
+.ceo-name{font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;margin-bottom:4px;}
+.ceo-title-text{font-size:13px;color:var(--gold-light);}
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border);}
+.tl-item{position:relative;margin-bottom:32px;}
+.tl-dot{position:absolute;left:-24px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--white);border:2px solid var(--gold);transition:background .2s;}
+.tl-item:hover .tl-dot{background:var(--gold);}
+.tl-year{font-size:12px;font-weight:600;letter-spacing:1px;color:var(--gold);margin-bottom:4px;}
+.tl-company{font-weight:600;font-size:15px;color:var(--navy);margin-bottom:2px;}
+.tl-role{font-size:13px;color:var(--text-muted);}
+
+/* VISION */
+#vision{background:var(--navy);padding:100px 40px;}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:60px;}
+.vision-card{border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:48px 40px;position:relative;overflow:hidden;transition:border-color .3s;}
+.vision-card:hover{border-color:var(--gold);}
+.vision-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(200,149,108,.07);pointer-events:none;}
+.vision-icon{font-size:36px;margin-bottom:20px;}
+.vision-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;}
+.vision-text{font-family:var(--serif);font-size:18px;font-weight:400;color:#fff;line-height:1.75;}
+
+/* BUSINESS */
+#business{background:var(--white);}
+.biz-division-tabs{display:flex;gap:0;margin:40px 0 0;border-bottom:2px solid var(--border);}
+.div-tab{padding:14px 36px;font-size:15px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--text-muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.div-tab.active{color:var(--navy);border-bottom-color:var(--gold);}
+.div-tab:hover:not(.active){color:var(--navy);}
+.division-panel{display:none;padding-top:40px;}
+.division-panel.active{display:block;}
+
+/* sub tabs */
+.biz-sub-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;}
+.sub-tab{padding:8px 20px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text-muted);transition:all .2s;}
+.sub-tab.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+.sub-tab:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.biz-sub-panel{display:none;}
+.biz-sub-panel.active{display:block;}
+
+.biz-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.biz-tag{display:inline-block;padding:4px 14px;background:var(--gold-bg);color:var(--gold-dark);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-radius:20px;margin-bottom:16px;}
+.biz-title{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:16px;}
+.biz-desc{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:24px;}
+.biz-items{list-style:none;}
+.biz-items li{padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;display:flex;align-items:flex-start;gap:10px;}
+.biz-items li::before{content:'—';color:var(--gold);font-weight:600;flex-shrink:0;margin-top:2px;}
+.biz-visual{background:var(--gold-bg);border-radius:8px;padding:36px;min-height:280px;}
+.biz-brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.brand-item{background:#fff;border-radius:6px;padding:16px;text-align:center;border:1px solid var(--border);}
+.brand-name{font-weight:700;font-size:14px;color:var(--navy);}
+.brand-sub{font-size:12px;color:var(--text-muted);margin-top:4px;}
+
+/* HISTORY */
+#history{background:var(--navy);padding:100px 40px;}
+#history .section-tag{color:var(--gold-light);}
+#history .section-title{color:#fff;}
+#history .divider{background:var(--gold);}
+.history-timeline{position:relative;margin-top:60px;padding-left:120px;}
+.history-timeline::before{content:'';position:absolute;left:96px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.15);}
+.hist-item{position:relative;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08);}
+.hist-item:last-child{border-bottom:none;}
+.hist-year{position:absolute;left:-120px;font-family:var(--serif);font-size:20px;font-weight:700;color:var(--gold-light);top:2px;text-align:right;width:96px;}
+.hist-dot{position:absolute;left:-28px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:3px solid var(--navy);box-shadow:0 0 0 2px var(--gold);}
+.hist-entry{font-size:14px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:6px;}
+.hist-entry strong{color:var(--gold-light);font-weight:500;}
+
+/* NETWORK */
+#network{background:var(--section-bg);}
+.network-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;}
+.network-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:32px;transition:all .2s;}
+.network-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 30px rgba(200,149,108,.12);}
+.net-flag{font-size:32px;margin-bottom:16px;}
+.net-country{font-weight:700;font-size:16px;color:var(--navy);margin-bottom:8px;}
+.net-desc{font-size:13px;color:var(--text-muted);line-height:1.7;}
+
+/* CONTACT */
+#contact{background:var(--white);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px;}
+.contact-info-block{margin-bottom:28px;}
+.contact-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.contact-value{font-size:15px;color:var(--text);line-height:1.7;}
+.contact-value a{color:var(--navy);text-decoration:none;}
+.contact-value a:hover{color:var(--gold);}
+.maps-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+.map-box{border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.map-label{background:var(--navy);color:#fff;font-size:12px;font-weight:600;padding:8px 12px;}
+.map-box iframe{display:block;width:100%;height:200px;border:none;}
+.contact-form{background:var(--gold-bg);border-radius:8px;padding:40px;}
+.form-title{font-family:var(--serif);font-size:22px;color:var(--navy);margin-bottom:24px;font-weight:600;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:13px;font-weight:500;color:var(--text-muted);margin-bottom:6px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--sans);font-size:14px;color:var(--text);background:#fff;outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);}
+.form-group textarea{height:120px;resize:vertical;}
+.form-submit{width:100%;padding:14px;background:var(--gold);color:#fff;border:none;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;transition:background .2s;}
+.form-submit:hover{background:var(--gold-dark);}
+
+/* FOOTER */
+footer{background:var(--navy);padding:60px 40px 40px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;}
+.footer-logo{font-family:var(--sans);font-weight:700;font-size:20px;color:var(--gold);margin-bottom:12px;}
+.footer-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;}
+.footer-col-title{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;}
+.footer-links{list-style:none;}
+.footer-links li{margin-bottom:8px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold-light);}
+.footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);}
+
+/* ── ADMIN ── */
+#admin-panel{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);}
+#admin-panel.open{display:flex;}
+.admin-sidebar{width:240px;background:var(--navy);height:100vh;overflow-y:auto;display:flex;flex-direction:column;flex-shrink:0;}
+.admin-header{padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1);}
+.admin-logo-text{font-size:14px;font-weight:700;color:var(--gold-light);}
+.admin-subtitle{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;}
+.admin-nav{padding:12px 0;flex:1;}
+.admin-nav-item{display:flex;align-items:center;gap:10px;padding:11px 24px;font-size:13px;color:rgba(255,255,255,.65);cursor:pointer;transition:all .2s;border:none;background:none;width:100%;text-align:left;border-left:3px solid transparent;}
+.admin-nav-item:hover,.admin-nav-item.active{background:rgba(255,255,255,.08);color:#fff;}
+.admin-nav-item.active{border-left-color:var(--gold);}
+.admin-nav-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.7;flex-shrink:0;}
+.admin-main{flex:1;background:#F1F3F5;height:100vh;overflow-y:auto;padding:32px;}
+.admin-close-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+.admin-page-title{font-size:20px;font-weight:700;color:var(--navy);}
+.admin-close-btn{padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:13px;}
+.admin-close-btn:hover{background:var(--navy-light);}
+.admin-page{display:none;}
+.admin-page.active{display:block;}
+.admin-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+.admin-card{background:#fff;border-radius:8px;padding:20px;border:1px solid #E5E7EB;}
+.admin-card-label{font-size:12px;color:#9CA3AF;font-weight:500;margin-bottom:8px;}
+.admin-card-num{font-size:28px;font-weight:700;color:var(--navy);}
+.admin-card-trend{font-size:12px;color:#10B981;margin-top:4px;}
+.admin-section{background:#fff;border-radius:8px;border:1px solid #E5E7EB;margin-bottom:20px;overflow:hidden;}
+.admin-section-head{padding:16px 20px;border-bottom:1px solid #F3F4F6;display:flex;justify-content:space-between;align-items:center;}
+.admin-section-title{font-weight:600;font-size:15px;color:var(--navy);}
+.admin-table{width:100%;border-collapse:collapse;}
+.admin-table th{padding:11px 20px;text-align:left;font-size:11px;font-weight:600;color:#6B7280;background:#F9FAFB;letter-spacing:.5px;text-transform:uppercase;}
+.admin-table td{padding:13px 20px;font-size:14px;color:var(--text);border-top:1px solid #F3F4F6;}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;}
+.badge-new{background:#D1FAE5;color:#065F46;}
+.badge-read{background:#F3F4F6;color:#6B7280;}
+.badge-reply{background:#DBEAFE;color:#1E40AF;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.form-row.full{grid-template-columns:1fr;}
+.af-group label{display:block;font-size:12px;font-weight:500;color:#6B7280;margin-bottom:5px;}
+.af-group input,.af-group textarea,.af-group select{width:100%;padding:9px 12px;border:1px solid #E5E7EB;border-radius:4px;font-size:14px;outline:none;font-family:var(--sans);}
+.af-group input:focus,.af-group textarea:focus{border-color:var(--gold);}
+.af-group textarea{min-height:80px;resize:vertical;}
+.af-group input[type=color]{padding:4px 6px;height:38px;cursor:pointer;}
+.save-btn{padding:10px 24px;background:var(--gold);color:#fff;border:none;border-radius:4px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;}
+.save-btn:hover{background:var(--gold-dark);}
+.admin-photo-preview{width:120px;height:140px;object-fit:cover;border-radius:6px;border:2px solid var(--border);display:none;}
+#ceo-ph-placeholder{width:120px;height:140px;background:#E5E7EB;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#9CA3AF;}
+.admin-section-body{padding:20px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-inner,.about-grid,.ceo-grid,.contact-grid,.biz-content-grid,.vision-grid{grid-template-columns:1fr;}
+  nav{display:none;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .history-timeline{padding-left:80px;}
+  .hist-year{left:-80px;width:60px;font-size:14px;}
+  .network-grid{grid-template-columns:1fr 1fr;}
+  .admin-cards{grid-template-columns:1fr 1fr;}
+  .maps-grid{grid-template-columns:1fr;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{animation:fadeUp .7s ease both;}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- ===== TRANSLATIONS ===== -->
+<script>
+const T = {
+  ko:{
+    nav_about:"회사소개", nav_ceo:"대표이사", nav_vision:"비전&미션", nav_biz:"사업소개",
+    nav_history:"연혁", nav_network:"글로벌네트워크", nav_contact:"문의하기",
+    hero_label:"Since 2013 · 펫푸드 & 유지 수출입 전문",
+    hero_title:"반려동물과 함께하는<br><em>글로벌 비즈니스</em>",
+    hero_desc:"한국과 러시아를 잇는 펫푸드·유지 전문 수출입 기업. 국내 유통부터 러시아 현지 법인 운영까지, 신뢰와 전문성으로 성장합니다.",
+    hero_btn1:"사업 알아보기", hero_btn2:"문의하기",
+    stat1_label:"년 업력", stat2_label:"국내 거래처", stat3_label:"러시아 유통망", stat4_label:"판매 거점",
+    about_tag:"회사소개", about_title:"주식회사 펫레전드",
+    about_desc:"2013년 설립된 펫푸드 및 유지 제품 전문 수출입 기업으로, 국내 시장 유통과 러시아 현지 법인(DOMOKUP LLC) 운영을 통해 한국과 러시아를 잇는 글로벌 사업을 전개합니다.",
+    about_founded:"설립", about_ceo:"대표이사", about_biz:"주요사업", about_mission:"미션",
+    about_biz_val:"펫푸드 수출입, 유지 트레이딩, 국내 유통",
+    about_mission_val:"반려동물 가족의 건강하고 행복한 생활에 기여",
+    hq_label:"본사 (대한민국)", ru_label:"러시아 법인 — DOMOKUP LLC (2024년 4월 설립)",
+    ceo_tag:"대표이사 소개", ceo_title:"김재근 대표이사", ceo_subtitle:"㈜펫레전드 대표이사",
+    ceo_desc:"대우인터내셔널, SK네트웍스에서 20년 이상 글로벌 자원·무역 분야 전문가로 활동. 카자흐스탄 지사장 경험을 바탕으로 CIS 지역 네트워크를 구축하였으며, 2015년부터 ㈜펫레전드를 이끌고 있습니다.",
+    tl1_role:"비철본부", tl2_role:"자원본부", tl3_role:"카자흐스탄 지사장", tl4_role:"자원본부", tl5_role:"대표이사 / CEO",
+    vision_tag:"비전 & 미션", vision_title:"우리가 나아가는 방향",
+    vision_card1_label:"VISION", vision_card1_text:"고객의 니즈를 정확히 파악하고 차별화된 서비스로 비즈니스의 가치를 높입니다.",
+    vision_card2_label:"MISSION", vision_card2_text:"반려동물 가족의 보다 건강하고 행복한 생활에 이바지하고, 최고의 전문성으로 고객 경쟁력에 기여한다.",
+    biz_tag:"주요 사업영역", biz_title:"2개 사업부 · 4개 핵심 분야",
+    pet_div:"펫사업부", raw_div:"원료사업부",
+    pet_sub1:"① 국내유통", pet_sub2:"② 러시아사업",
+    raw_sub1:"① 동물성 유지", raw_sub2:"② 식물성 유지", raw_sub3:"③ 동물성 사료원료",
+    p1_tag:"국내유통", p1_title:"JOYSER & 건국유업 랩솔루션",
+    p1_desc:"유럽 명품 JOYSER 펫토이·악세사리 국내 독점 공급 및 건국유업 랩솔루션 전국 총판. 전국 온·오프라인 200여 거래처를 통해 1,000개 이상의 판매 거점에 제품을 공급합니다.",
+    p1_i1:"JOYSER — 유럽산 프리미엄 펫토이 & 악세사리 (국내 독점)",
+    p1_i2:"PUFF — 이탈리아산 펫 헤어 디졸버 (국내 독점)",
+    p1_i3:"건국유업 랩솔루션 — 반려동물 영양제 6종 전국 총판",
+    p1_i4:"전국 200개 거래처, 1,000개 이상 판매 거점",
+    p1_i5:"콜센터 운영, 철저한 CS 관리",
+    p2_tag:"러시아사업", p2_title:"한국 최초 러시아 진출 펫 전문기업",
+    p2_desc:"모스크바 현지 법인(DOMOKUP LLC)을 통해 한국 우수 반려동물 제품을 러시아·CIS 지역에 수출하고, 수의용 AI 솔루션 및 동물 진단키트를 공급합니다.",
+    p2_i1:"SK텔레콤 X Caliber — 수의사용 X-ray AI 진단 솔루션 (러시아 독점)",
+    p2_i2:"MEDIAN — 동물 진단키트 (축산·펫) 러시아 독점판매",
+    p2_i3:"퓨어네이처, 뉴트리플랜, 원더캣츠 등 펫푸드 수출",
+    p2_i4:"현지 대형 유통망 10개사 계약 · 목표: 3년 내 러시아 30개 도시",
+    r1_tag:"동물성 유지", r1_title:"러시아산 동물성 지방 한국 공급",
+    r1_desc:"러시아 최대 농식품그룹 MIRATORG와 장기 공급계약(~2028) 체결. 동물성 지방(CAT1, CAT3)을 한국 바이오디젤, 사료 업체에 공급합니다.",
+    r1_i1:"MIRATORG — 러시아 최대 농식품그룹, 장기 계약 (~2028)",
+    r1_i2:"동물성 지방 CAT1 · CAT3 한국 바이오디젤·사료 업체 공급",
+    r1_i3:"안정적인 장기 공급망 확보",
+    r2_tag:"식물성 유지", r2_title:"러시아산 식용유 한국 공급",
+    r2_desc:"러시아산 해바라기유, 카놀라유, 콩기름 등 식용유 제품을 한국 식품, 치킨 프랜차이즈, 사료 업체에 공급합니다.",
+    r2_i1:"해바라기유 (Sunflower Oil)", r2_i2:"카놀라유 (Canola/Rapeseed Oil)",
+    r2_i3:"대두유 (Soybean Oil)", r2_i4:"한국 식품·치킨 프랜차이즈·사료 업체 공급",
+    r3_tag:"동물성 사료원료", r3_title:"동물성 사료원료 수입 공급",
+    r3_desc:"러시아산 고품질 동물성 사료원료를 한국 사료 제조사에 안정적으로 공급합니다. 고객 요구사항을 반영한 혁신적 제품과 서비스로 동반 성장을 추구합니다.",
+    r3_i1:"고품질 동물성 단백질 원료", r3_i2:"한국 사료 제조사 공급",
+    r3_i3:"고객 맞춤형 안정 공급망",
+    hist_tag:"회사 연혁", hist_title:"2013 – 2026",
+    net_tag:"글로벌 네트워크", net_title:"한국 · 러시아 · CIS를 잇다",
+    net1_country:"대한민국", net1_desc:"본사 — 경기도 고양시\n전국 200개 거래처, 1,000개 판매 거점\n건국유업, 광동제약 등 주요 파트너",
+    net2_country:"러시아", net2_desc:"DOMOKUP LLC — 모스크바\n현지 대형 유통망 10개사 계약\n목표: 3년 내 30개 주요 도시 진출",
+    net3_country:"CIS 8개국", net3_desc:"DOMOKUP LLC를 통한 CIS 진출 목표\n카자흐스탄, 우즈베키스탄 등\n중앙아시아 시장 확대 계획",
+    contact_tag:"문의 및 오시는 길", contact_title:"함께 성장합시다",
+    hq_addr:"본사 주소", phone_label:"전화", email_label:"이메일",
+    contact_person:"담당자", ru_office:"러시아 법인",
+    form_title:"문의하기", form_name:"회사명 / 성함", form_email:"이메일",
+    form_type:"문의 유형", form_msg:"문의 내용", form_submit:"문의 보내기",
+    ft_opt1:"사업 협력", ft_opt2:"수출", ft_opt3:"수입", ft_opt4:"Trading", ft_opt5:"기타",
+  },
+  en:{
+    nav_about:"About", nav_ceo:"CEO", nav_vision:"Vision & Mission", nav_biz:"Business",
+    nav_history:"History", nav_network:"Network", nav_contact:"Contact",
+    hero_label:"Since 2013 · Pet Food & Oil Export/Import Specialist",
+    hero_title:"Global Business<br><em>for Pet Families</em>",
+    hero_desc:"Connecting Korea and Russia in pet food and oils. From domestic distribution to Moscow subsidiary operations — growing through expertise and trust.",
+    hero_btn1:"Our Business", hero_btn2:"Contact Us",
+    stat1_label:"Years", stat2_label:"Domestic Partners", stat3_label:"Russia Distributors", stat4_label:"Sales Points",
+    about_tag:"About Us", about_title:"Pet Legend Co., Ltd.",
+    about_desc:"Founded in 2013, Pet Legend specializes in pet food and oils import/export. We operate Korean domestic distribution and Moscow subsidiary DOMOKUP LLC, bridging Korea and Russia.",
+    about_founded:"Founded", about_ceo:"CEO", about_biz:"Business", about_mission:"Mission",
+    about_biz_val:"Pet Food Import/Export, Oil Trading, Domestic Distribution",
+    about_mission_val:"Contributing to healthy and happy lives of pet families",
+    hq_label:"Headquarters (Korea)", ru_label:"Russia Subsidiary — DOMOKUP LLC (Est. April 2024)",
+    ceo_tag:"CEO Profile", ceo_title:"Kim Jae-geun, CEO", ceo_subtitle:"CEO, Pet Legend Co., Ltd.",
+    ceo_desc:"Over 20 years in global trade at Daewoo International and SK Networks. Built CIS networks as Kazakhstan Branch Director. Leading Pet Legend since 2015.",
+    tl1_role:"Non-Ferrous Division", tl2_role:"Resources Division", tl3_role:"Kazakhstan Branch Director", tl4_role:"Resources Division", tl5_role:"CEO & Founder",
+    vision_tag:"Vision & Mission", vision_title:"Our Direction",
+    vision_card1_label:"VISION", vision_card1_text:"We accurately identify customer needs and enhance business value through differentiated services.",
+    vision_card2_label:"MISSION", vision_card2_text:"We contribute to the healthy and happy lives of pet families and support our customers' competitiveness with the highest expertise.",
+    biz_tag:"Business Areas", biz_title:"2 Divisions · 4 Core Areas",
+    pet_div:"Pet Division", raw_div:"Raw Materials Division",
+    pet_sub1:"① Domestic", pet_sub2:"② Russia",
+    raw_sub1:"① Animal Fats", raw_sub2:"② Vegetable Oils", raw_sub3:"③ Animal Feed",
+    p1_tag:"DOMESTIC", p1_title:"JOYSER & Lab Solution",
+    p1_desc:"Exclusive domestic distributor of European premium brand JOYSER and nationwide distributor of Konkuk Dairy's Lab Solution. Supplying 1,000+ points through 200+ partners.",
+    p1_i1:"JOYSER — European premium pet toy & accessories (exclusive)",
+    p1_i2:"PUFF — Italian Pet Hair Dissolver (exclusive)",
+    p1_i3:"Konkuk Dairy Lab Solution — 6 pet supplement lines, nationwide",
+    p1_i4:"200+ partners, 1,000+ sales points nationwide",
+    p1_i5:"Dedicated customer service center",
+    p2_tag:"RUSSIA", p2_title:"Korea's First Pet Company in Russia",
+    p2_desc:"Through DOMOKUP LLC in Moscow, we export premium Korean pet products to Russia and CIS, supplying veterinary AI solutions and animal diagnostic kits.",
+    p2_i1:"SK Telecom X Caliber — Vet X-ray AI diagnostic (Russia exclusive)",
+    p2_i2:"MEDIAN — Animal diagnostic kits (Russia exclusive)",
+    p2_i3:"Pet food: Pure Nature, Nutri Plan, Wonder Cats, etc.",
+    p2_i4:"10 major distributor contracts · Target: 30 Russian cities",
+    r1_tag:"ANIMAL FATS", r1_title:"Russian Animal Fat Supply to Korea",
+    r1_desc:"Long-term supply contract (~2028) with Russia's largest agri-food group MIRATORG. Supplying animal fats (CAT1, CAT3) to Korean biodiesel and feed industries.",
+    r1_i1:"MIRATORG — Long-term contract (~2028)",
+    r1_i2:"Animal fat CAT1 & CAT3 for Korean biodiesel & feed",
+    r1_i3:"Stable long-term supply chain secured",
+    r2_tag:"VEGETABLE OILS", r2_title:"Russian Edible Oil Supply to Korea",
+    r2_desc:"Supplying Russian sunflower oil, canola oil, soybean oil to Korean food, chicken franchise, and feed industries.",
+    r2_i1:"Sunflower Oil", r2_i2:"Canola/Rapeseed Oil",
+    r2_i3:"Soybean Oil", r2_i4:"Korean food, chicken franchise & feed industries",
+    r3_tag:"ANIMAL FEED", r3_title:"Animal Feed Ingredient Import",
+    r3_desc:"Stably supplying high-quality Russian animal feed ingredients to Korean feed manufacturers. Pursuing mutual growth through innovative products and services.",
+    r3_i1:"High-quality animal protein ingredients", r3_i2:"Supply to Korean feed manufacturers",
+    r3_i3:"Customer-tailored stable supply chain",
+    hist_tag:"Company History", hist_title:"2013 – 2026",
+    net_tag:"Global Network", net_title:"Connecting Korea, Russia & CIS",
+    net1_country:"Korea", net1_desc:"HQ — Goyang, Gyeonggi-do\n200+ partners, 1,000+ sales points\nKonkuk Dairy, Kwangdong Pharma and more",
+    net2_country:"Russia", net2_desc:"DOMOKUP LLC — Moscow\n10 major distributor contracts\nTarget: 30 cities in 3 years",
+    net3_country:"CIS 8 Countries", net3_desc:"Expansion plan via DOMOKUP LLC\nKazakhstan, Uzbekistan\nand Central Asian markets",
+    contact_tag:"Contact & Directions", contact_title:"Let's grow together",
+    hq_addr:"Headquarters", phone_label:"Phone", email_label:"Email",
+    contact_person:"Contact Person", ru_office:"Russia Office",
+    form_title:"Send us a message", form_name:"Company / Name", form_email:"Email",
+    form_type:"Inquiry Type", form_msg:"Message", form_submit:"Send Message",
+    ft_opt1:"Partnership", ft_opt2:"Export", ft_opt3:"Import", ft_opt4:"Trading", ft_opt5:"Other",
+  },
+  ru:{
+    nav_about:"О нас", nav_ceo:"Директор", nav_vision:"Видение", nav_biz:"Бизнес",
+    nav_history:"История", nav_network:"Сеть", nav_contact:"Контакты",
+    hero_label:"С 2013 года · Экспорт/Импорт кормов и масел",
+    hero_title:"Глобальный бизнес<br><em>для питомцев</em>",
+    hero_desc:"Связываем Корею и Россию в сфере кормов для животных и масел. От внутреннего распределения до управления московским дочерним предприятием.",
+    hero_btn1:"Наш бизнес", hero_btn2:"Связаться",
+    stat1_label:"лет опыта", stat2_label:"Партнёры в Корее", stat3_label:"Дистрибьюторов", stat4_label:"Точек продаж",
+    about_tag:"О компании", about_title:"Pet Legend Co., Ltd.",
+    about_desc:"Основана в 2013 году. Специализируемся на импорте/экспорте кормов и масел. Работаем в Корее и через московское дочернее предприятие DOMOKUP LLC.",
+    about_founded:"Основана", about_ceo:"Директор", about_biz:"Бизнес", about_mission:"Миссия",
+    about_biz_val:"Экспорт/импорт кормов, торговля маслами, внутренняя дистрибуция",
+    about_mission_val:"Здоровая и счастливая жизнь питомцев и их семей",
+    hq_label:"Главный офис (Корея)", ru_label:"Российское юрлицо — DOMOKUP LLC (осн. апрель 2024)",
+    ceo_tag:"Профиль директора", ceo_title:"Ким Дже-гын, Генеральный директор", ceo_subtitle:"Генеральный директор",
+    ceo_desc:"Более 20 лет в международной торговле в Daewoo International и SK Networks. Возглавлял филиал в Казахстане, построив сеть в странах СНГ. Руководит Pet Legend с 2015 года.",
+    tl1_role:"Отдел цветных металлов", tl2_role:"Отдел ресурсов", tl3_role:"Директор филиала в Казахстане", tl4_role:"Отдел ресурсов", tl5_role:"Генеральный директор",
+    vision_tag:"Видение и Миссия", vision_title:"Наше направление",
+    vision_card1_label:"ВИДЕНИЕ", vision_card1_text:"Точно определяем потребности клиентов и повышаем ценность бизнеса с помощью дифференцированных услуг.",
+    vision_card2_label:"МИССИЯ", vision_card2_text:"Мы вносим вклад в здоровую и счастливую жизнь семей с питомцами и поддерживаем конкурентоспособность клиентов на высшем профессиональном уровне.",
+    biz_tag:"Направления бизнеса", biz_title:"2 подразделения · 4 ключевых направления",
+    pet_div:"Зоо-подразделение", raw_div:"Сырьевое подразделение",
+    pet_sub1:"① Внутренний рынок", pet_sub2:"② Россия",
+    raw_sub1:"① Животные жиры", raw_sub2:"② Растительные масла", raw_sub3:"③ Сырьё для кормов",
+    p1_tag:"ВНУТРЕННИЙ", p1_title:"JOYSER & Lab Solution",
+    p1_desc:"Эксклюзивный дистрибьютор европейского бренда JOYSER и национальный дистрибьютор Lab Solution. Поставляем в 1000+ точек через 200+ партнёров.",
+    p1_i1:"JOYSER — европейские игрушки для питомцев (эксклюзив)",
+    p1_i2:"PUFF — итальянский растворитель шерсти (эксклюзив)",
+    p1_i3:"Lab Solution — 6 видов добавок для питомцев, по всей Корее",
+    p1_i4:"200+ партнёров, 1000+ точек продаж",
+    p1_i5:"Служба поддержки клиентов",
+    p2_tag:"РОССИЯ", p2_title:"Первая корейская зоокомпания в России",
+    p2_desc:"Через DOMOKUP LLC в Москве экспортируем корейские товары для животных в Россию и СНГ, поставляем ветеринарные AI-решения и диагностические наборы.",
+    p2_i1:"SK Telecom X Caliber — ИИ-диагностика для ветеринаров (эксклюзив)",
+    p2_i2:"MEDIAN — диагностические наборы для животных (эксклюзив)",
+    p2_i3:"Корма: Pure Nature, Nutri Plan, Wonder Cats и др.",
+    p2_i4:"10 крупных дистрибьюторов · Цель: 30 городов за 3 года",
+    r1_tag:"ЖИВОТНЫЕ ЖИРЫ", r1_title:"Поставки российских животных жиров в Корею",
+    r1_desc:"Долгосрочный контракт (~2028) с крупнейшим агропромышленным холдингом России МИРАТОРГ. Поставляем животный жир (CAT1, CAT3) корейским производителям биодизеля и кормов.",
+    r1_i1:"МИРАТОРГ — долгосрочный контракт (~2028)",
+    r1_i2:"Животный жир CAT1 и CAT3 для биодизеля и кормов",
+    r1_i3:"Стабильная долгосрочная цепочка поставок",
+    r2_tag:"РАСТИТЕЛЬНЫЕ МАСЛА", r2_title:"Поставки российских растительных масел в Корею",
+    r2_desc:"Поставляем подсолнечное, рапсовое, соевое масло корейским пищевым компаниям, сетям куриного фастфуда и производителям кормов.",
+    r2_i1:"Подсолнечное масло", r2_i2:"Рапсовое масло",
+    r2_i3:"Соевое масло", r2_i4:"Пищевая промышленность и производители кормов Кореи",
+    r3_tag:"СЫРЬЁ ДЛЯ КОРМОВ", r3_title:"Импорт сырья для животных кормов",
+    r3_desc:"Стабильно поставляем высококачественное российское сырьё для животных кормов корейским производителям. Стремимся к совместному росту.",
+    r3_i1:"Высококачественное животное белковое сырьё", r3_i2:"Поставки корейским производителям кормов",
+    r3_i3:"Индивидуальная стабильная цепочка поставок",
+    hist_tag:"История компании", hist_title:"2013 – 2026",
+    net_tag:"Глобальная сеть", net_title:"Связываем Корею, Россию и СНГ",
+    net1_country:"Корея", net1_desc:"Главный офис — Коян, Кёнги\n200+ партнёров, 1000+ точек продаж\nKonkuk Dairy, Kwangdong и другие",
+    net2_country:"Россия", net2_desc:"DOMOKUP LLC — Москва\n10 крупных дистрибьюторов\nЦель: 30 городов за 3 года",
+    net3_country:"8 стран СНГ", net3_desc:"Расширение через DOMOKUP LLC\nКазахстан, Узбекистан\nи рынки Центральной Азии",
+    contact_tag:"Контакты", contact_title:"Давайте расти вместе",
+    hq_addr:"Адрес главного офиса", phone_label:"Телефон", email_label:"Email",
+    contact_person:"Контактное лицо", ru_office:"Офис в России",
+    form_title:"Напишите нам", form_name:"Компания / Имя", form_email:"Email",
+    form_type:"Тип запроса", form_msg:"Сообщение", form_submit:"Отправить",
+    ft_opt1:"Партнёрство", ft_opt2:"Экспорт", ft_opt3:"Импорт", ft_opt4:"Trading", ft_opt5:"Прочее",
+  }
+};
+let lang = 'ko';
+function t(key){ return T[lang][key] || T['ko'][key] || ''; }
+function applyLang(l){
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  document.documentElement.lang = l;
+  renderAll();
+}
+</script>
+
+<!-- ===== HEADER ===== -->
+<header id="main-header">
+  <div class="header-inner">
+    <a href="#hero" class="logo-wrap" id="logo-link">
+      <div class="logo-circle" id="logo-circle-el"><span>PL</span></div>
+      <span id="logo-text-el">petlegend</span>
+    </a>
+    <nav>
+      <a href="#about" id="nav_about"></a>
+      <a href="#ceo" id="nav_ceo"></a>
+      <a href="#vision" id="nav_vision"></a>
+      <a href="#history" id="nav_history"></a>
+      <a href="#business" id="nav_biz"></a>
+      <a href="#network" id="nav_network"></a>
+      <a href="#contact" id="nav_contact"></a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-l="ko" onclick="applyLang('ko')"><span class="lang-flag">🇰🇷</span><span class="lang-code">KR</span></button>
+        <button class="lang-btn" data-l="en" onclick="applyLang('en')"><span class="lang-flag">🇺🇸</span><span class="lang-code">EN</span></button>
+        <button class="lang-btn" data-l="ru" onclick="applyLang('ru')"><span class="lang-flag">🇷🇺</span><span class="lang-code">RU</span></button>
+      </div>
+      <button class="admin-btn" onclick="openAdmin()" id="admin-header-btn" style="display:none;">관리자</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-pattern"></div><div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="fade-up">
+      <span class="hero-label" id="hero_label"></span>
+      <h1 class="hero-title" id="hero_title"></h1>
+      <p class="hero-desc" id="hero_desc"></p>
+      <div class="hero-btns">
+        <a href="#business" class="btn-primary" id="hero_btn1"></a>
+        <a href="#contact" class="btn-outline" id="hero_btn2"></a>
+      </div>
+    </div>
+    <div class="hero-stats fade-up d2">
+      <div class="stat-card"><div class="stat-num">13+</div><div class="stat-label" id="stat1_label"></div></div>
+      <div class="stat-card"><div class="stat-num">200+</div><div class="stat-label" id="stat2_label"></div></div>
+      <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label" id="stat3_label"></div></div>
+      <div class="stat-card"><div class="stat-num">1K+</div><div class="stat-label" id="stat4_label"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-tag" id="about_tag"></p>
+    <h2 class="section-title" id="about_title"></h2>
+    <div class="divider"></div>
+    <p class="section-desc" id="about_desc"></p>
+    <div class="about-grid">
+      <div>
+        <table class="about-info-table">
+          <tr><td id="about_founded"></td><td>2013년 12월 / December 2013</td></tr>
+          <tr><td id="about_ceo"></td><td>김재근 (Kim Jae-geun)</td></tr>
+          <tr><td id="about_biz"></td><td id="about_biz_val"></td></tr>
+          <tr><td id="about_mission"></td><td id="about_mission_val"></td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="office-card">
+          <div class="office-flag">🇰🇷</div>
+          <div class="office-name" id="hq_label"></div>
+          <div class="office-detail">경기도 고양시 덕양구 으뜸로 130<br>위프라임트윈타워 A동 1308호<br>Tel. +82-70-7573-0987</div>
+        </div>
+        <div class="office-card">
+          <div class="office-flag">🇷🇺</div>
+          <div class="office-name" id="ru_label"></div>
+          <div class="office-detail">Proizvodstvennaya St., 11s8, Office No.8108,8109<br>Moscow, Russian Federation<br>Tel. +7(495)181-5693</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CEO ===== -->
+<section id="ceo">
+  <div class="section-inner">
+    <p class="section-tag" id="ceo_tag"></p>
+    <h2 class="section-title" id="ceo_title"></h2>
+    <div class="divider"></div>
+    <div class="ceo-grid">
+      <div class="ceo-card">
+        <div id="ceo-photo-wrap">
+          <div class="ceo-img-placeholder" id="ceo-ph-placeholder-display">👤</div>
+        </div>
+        <div class="ceo-name-block">
+          <div class="ceo-name">김재근</div>
+          <div class="ceo-title-text" id="ceo_subtitle"></div>
+        </div>
+      </div>
+      <div>
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:28px;line-height:1.8;" id="ceo_desc"></p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1993–2004</div><div class="tl-company">㈜대우인터내셔널 (Daewoo International)</div><div class="tl-role" id="tl1_role"></div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2005–2007</div><div class="tl-company">SK네트웍스㈜ (SK Networks)</div><div class="tl-role" id="tl2_role"></div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2008–2010</div><div class="tl-company">SK네트웍스㈜ (SK Networks)</div><div class="tl-role" id="tl3_role"></div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2011–2014</div><div class="tl-company">SK네트웍스㈜ (SK Networks)</div><div class="tl-role" id="tl4_role"></div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2015–현재</div><div class="tl-company">㈜펫레전드 (Pet Legend)</div><div class="tl-role" id="tl5_role"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISION ===== -->
+<section id="vision">
+  <div class="section-inner">
+    <p class="section-tag" style="color:var(--gold-light);" id="vision_tag"></p>
+    <h2 class="section-title" style="color:#fff;" id="vision_title"></h2>
+    <div class="divider"></div>
+    <div class="vision-grid">
+      <div class="vision-card">
+        <div class="vision-icon">🔭</div>
+        <div class="vision-label" id="vision_card1_label"></div>
+        <div class="vision-text" id="vision_card1_text"></div>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon">🎯</div>
+        <div class="vision-label" id="vision_card2_label"></div>
+        <div class="vision-text" id="vision_card2_text"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUSINESS ===== -->
+<section id="business">
+  <div class="section-inner">
+    <p class="section-tag" id="biz_tag"></p>
+    <h2 class="section-title" id="biz_title"></h2>
+    <div class="divider"></div>
+
+    <div class="biz-division-tabs">
+      <button class="div-tab active" id="dtab_pet" onclick="showDiv('pet')"><span id="pet_div"></span></button>
+      <button class="div-tab" id="dtab_raw" onclick="showDiv('raw')"><span id="raw_div"></span></button>
+    </div>
+
+    <!-- 펫사업부 -->
+    <div id="div-pet" class="division-panel active">
+      <div class="biz-sub-tabs">
+        <button class="sub-tab active" id="stab_p1" onclick="showSub('pet','p1')"><span id="pet_sub1"></span></button>
+        <button class="sub-tab" id="stab_p2" onclick="showSub('pet','p2')"><span id="pet_sub2"></span></button>
+      </div>
+
+      <!-- 국내유통 -->
+      <div id="sub-pet-p1" class="biz-sub-panel active">
+        <div class="biz-content-grid">
+          <div>
+            <span class="biz-tag" id="p1_tag"></span>
+            <h3 class="biz-title" id="p1_title"></h3>
+            <p class="biz-desc" id="p1_desc"></p>
+            <ul class="biz-items">
+              <li id="p1_i1"></li><li id="p1_i2"></li><li id="p1_i3"></li><li id="p1_i4"></li><li id="p1_i5"></li>
+            </ul>
+          </div>
+          <div class="biz-visual">
+            <div style="margin-bottom:14px;font-weight:600;font-size:13px;color:var(--gold-dark);">BRANDS</div>
+            <div class="biz-brand-grid" style="grid-template-columns:1fr;">
+              <div class="brand-item" style="padding:20px;margin-bottom:12px;"><div class="brand-name" style="font-size:18px;color:var(--gold-dark);">JOYSER</div><div class="brand-sub" style="margin-top:6px;font-size:12px;">유럽산 프리미엄 펫토이 &amp; 악세사리<br>European Premium Pet Toy &amp; Accessories<br><span style="color:var(--gold-dark);font-weight:600;">국내 독점 / Exclusive</span></div></div>
+              <div class="brand-item" style="padding:20px;margin-bottom:12px;"><div class="brand-name" style="font-size:16px;color:var(--gold-dark);">PUFF</div><div class="brand-sub" style="margin-top:6px;font-size:12px;">이탈리아산 펫 헤어 디졸버<br>Italian Pet Hair Dissolver<br><span style="color:var(--gold-dark);font-weight:600;">국내 독점 / Exclusive</span></div></div>
+              <div class="brand-item" style="padding:20px;"><div class="brand-name" style="font-size:15px;color:var(--gold-dark);">Lab Solution × 건국유업</div><div class="brand-sub" style="margin-top:6px;font-size:12px;">반려동물 영양제 6종 전국 총판<br>눈건강·관절·피부·펫밀크·펫치즈·유산균</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 러시아사업 -->
+      <div id="sub-pet-p2" class="biz-sub-panel">
+        <div class="biz-content-grid">
+          <div>
+            <span class="biz-tag" id="p2_tag"></span>
+            <h3 class="biz-title" id="p2_title"></h3>
+            <p class="biz-desc" id="p2_desc"></p>
+            <ul class="biz-items">
+              <li id="p2_i1"></li><li id="p2_i2"></li><li id="p2_i3"></li><li id="p2_i4"></li>
+            </ul>
+          </div>
+          <div class="biz-visual">
+            <div style="margin-bottom:14px;font-weight:600;font-size:13px;color:var(--gold-dark);">RUSSIA PORTFOLIO</div>
+            <div class="biz-brand-grid">
+              <div class="brand-item"><div class="brand-name">Pure Nature</div><div class="brand-sub">슈퍼 프리미엄 사료</div></div>
+              <div class="brand-item"><div class="brand-name">Nutri Plan</div><div class="brand-sub">프리미엄 건식사료</div></div>
+              <div class="brand-item"><div class="brand-name">Wonder Cats</div><div class="brand-sub">프리미엄 고양이모래</div></div>
+              <div class="brand-item"><div class="brand-name">X Caliber</div><div class="brand-sub">AI 진단 솔루션</div></div>
+              <div class="brand-item"><div class="brand-name">MEDIAN</div><div class="brand-sub">동물 진단키트</div></div>
+              <div class="brand-item"><div class="brand-name">Ever Dream</div><div class="brand-sub">그루밍 제품</div></div>
+            </div>
+            <div style="margin-top:14px;padding:12px;background:#fff;border-radius:6px;border:1px solid var(--border);font-size:12px;color:var(--text-muted);">www.domokup.ru &nbsp;|&nbsp; www.domopet.ru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 원료사업부 -->
+    <div id="div-raw" class="division-panel">
+      <div class="biz-sub-tabs">
+        <button class="sub-tab active" id="stab_r1" onclick="showSub('raw','r1')"><span id="raw_sub1"></span></button>
+        <button class="sub-tab" id="stab_r2" onclick="showSub('raw','r2')"><span id="raw_sub2"></span></button>
+        <button class="sub-tab" id="stab_r3" onclick="showSub('raw','r3')"><span id="raw_sub3"></span></button>
+      </div>
+
+      <!-- 동물성유지 -->
+      <div id="sub-raw-r1" class="biz-sub-panel active">
+        <div class="biz-content-grid">
+          <div>
+            <span class="biz-tag" id="r1_tag"></span>
+            <h3 class="biz-title" id="r1_title"></h3>
+            <p class="biz-desc" id="r1_desc"></p>
+            <ul class="biz-items"><li id="r1_i1"></li><li id="r1_i2"></li><li id="r1_i3"></li></ul>
+          </div>
+          <div class="biz-visual">
+            <div class="brand-item" style="padding:24px;margin-bottom:16px;">
+              <div class="brand-name" style="font-size:18px;letter-spacing:1px;">MIRATORG</div>
+              <div class="brand-sub" style="margin-top:8px;font-size:13px;">러시아 최대 농식품그룹<br>장기 공급계약 (~2028)</div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="padding:6px 14px;background:#fff;border-radius:20px;font-size:12px;font-weight:600;color:var(--gold-dark);border:1px solid var(--border);">동물성 지방 CAT1</span>
+              <span style="padding:6px 14px;background:#fff;border-radius:20px;font-size:12px;font-weight:600;color:var(--gold-dark);border:1px solid var(--border);">동물성 지방 CAT3</span>
+              <span style="padding:6px 14px;background:#fff;border-radius:20px;font-size:12px;font-weight:500;color:var(--text-muted);border:1px solid var(--border);">바이오디젤용</span>
+              <span style="padding:6px 14px;background:#fff;border-radius:20px;font-size:12px;font-weight:500;color:var(--text-muted);border:1px solid var(--border);">사료용</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 식물성유지 -->
+      <div id="sub-raw-r2" class="biz-sub-panel">
+        <div class="biz-content-grid">
+          <div>
+            <span class="biz-tag" id="r2_tag"></span>
+            <h3 class="biz-title" id="r2_title"></h3>
+            <p class="biz-desc" id="r2_desc"></p>
+            <ul class="biz-items"><li id="r2_i1"></li><li id="r2_i2"></li><li id="r2_i3"></li><li id="r2_i4"></li></ul>
+          </div>
+          <div class="biz-visual">
+            <div class="biz-brand-grid" style="grid-template-columns:1fr 1fr 1fr;gap:12px;">
+              <div class="brand-item"><div class="brand-name" style="font-size:13px;">🌻</div><div class="brand-name" style="font-size:13px;margin-top:4px;">해바라기유</div><div class="brand-sub">Sunflower</div></div>
+              <div class="brand-item"><div class="brand-name" style="font-size:13px;">🌿</div><div class="brand-name" style="font-size:13px;margin-top:4px;">카놀라유</div><div class="brand-sub">Canola</div></div>
+              <div class="brand-item"><div class="brand-name" style="font-size:13px;">🫘</div><div class="brand-name" style="font-size:13px;margin-top:4px;">대두유</div><div class="brand-sub">Soybean</div></div>
+            </div>
+            <div style="margin-top:16px;padding:16px;background:#fff;border-radius:6px;border:1px solid var(--border);">
+              <div style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:6px;">공급처 유형</div>
+              <div style="font-size:13px;color:var(--navy);">한국 식품회사 · 치킨 프랜차이즈 · 사료업체</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 동물성사료원료 -->
+      <div id="sub-raw-r3" class="biz-sub-panel">
+        <div class="biz-content-grid">
+          <div>
+            <span class="biz-tag" id="r3_tag"></span>
+            <h3 class="biz-title" id="r3_title"></h3>
+            <p class="biz-desc" id="r3_desc"></p>
+            <ul class="biz-items"><li id="r3_i1"></li><li id="r3_i2"></li><li id="r3_i3"></li></ul>
+          </div>
+          <div class="biz-visual">
+            <div style="padding:20px;background:#fff;border-radius:6px;border:1px solid var(--border);">
+              <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:10px;">공급 특징</div>
+              <div style="font-size:13px;color:var(--text-muted);line-height:1.8;">★ 고객 요구사항을 반영한 혁신적 제품과 서비스로 동반 성장 추구<br><br>러시아산 고품질 원료의 안정적인 장기 공급망 확보</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HISTORY ===== -->
+<section id="history">
+  <div class="section-inner">
+    <p class="section-tag" id="hist_tag"></p>
+    <h2 class="section-title" id="hist_title"></h2>
+    <div class="divider"></div>
+    <div class="history-timeline">
+      <div class="hist-item"><div class="hist-year">2025–26</div><div class="hist-dot"></div>
+        <div class="hist-entry"><strong>'26.02</strong> — MIRATORG 유지제품 한국향 장기 공급계약 체결 (~2028) <span style="font-size:12px;opacity:.7;">/ Long-term oil supply contract with MIRATORG (~2028)</span></div>
+        <div class="hist-entry"><strong>'25.10</strong> — MEDIAN 동물진단키트 러시아 독점판매 계약 <span style="font-size:12px;opacity:.7;">/ MEDIAN animal diagnostic kits Russia exclusive</span></div>
+        <div class="hist-entry"><strong>'25.03</strong> — SK텔레콤 X Caliber 러시아 버전 정식 런칭 <span style="font-size:12px;opacity:.7;">/ X Caliber Russia official launch</span></div>
+        <div class="hist-entry"><strong>'25.01</strong> — 브릿지테일·실리콘연구소 러시아 독점수출 계약</div>
+      </div>
+      <div class="hist-item"><div class="hist-year">2024</div><div class="hist-dot"></div>
+        <div class="hist-entry"><strong>'24.04</strong> — 러시아 모스크바 법인 DOMOKUP LLC 설립 <span style="font-size:12px;opacity:.7;">/ DOMOKUP LLC established in Moscow</span></div>
+        <div class="hist-entry"><strong>'24.10</strong> — SK텔레콤 X-ray AI 솔루션 "X Caliber" 러시아 독점계약</div>
+      </div>
+      <div class="hist-item"><div class="hist-year">2023</div><div class="hist-dot"></div>
+        <div class="hist-entry"><strong>'23.05</strong> — 러시아 시장 진출 <span style="font-size:12px;opacity:.7;">/ Entered Russian market</span></div>
+        <div class="hist-entry"><strong>'23.10</strong> — 퓨어네이처 사료, 에버드림 모래 수출</div>
+        <div class="hist-entry"><strong>'23.06</strong> — 유럽명품 JOYSER 펫토이 국내시장 런칭</div>
+      </div>
+      <div class="hist-item"><div class="hist-year">2021–22</div><div class="hist-dot"></div>
+        <div class="hist-entry">우리와㈜ 통합 온라인 벤더 계약 / 7개 브랜드 300개 제품 운영</div>
+        <div class="hist-entry">광동제약 / 건국유업 펫영양제 벤더계약, 국내 온/오프라인 유통</div>
+      </div>
+      <div class="hist-item"><div class="hist-year">2014–20</div><div class="hist-dot"></div>
+        <div class="hist-entry">이리온 "웰츠"사료 국내 온라인 독점판매 계약</div>
+        <div class="hist-entry">펫 배변용품 수입 PB상품 유통 (강아지패드, 고양이모래)</div>
+      </div>
+      <div class="hist-item"><div class="hist-year">2013</div><div class="hist-dot"></div>
+        <div class="hist-entry">㈜펫레전드 설립 (2013년 12월) <span style="font-size:12px;opacity:.7;">/ Pet Legend Co., Ltd. founded</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NETWORK ===== -->
+<section id="network">
+  <div class="section-inner">
+    <p class="section-tag" id="net_tag"></p>
+    <h2 class="section-title" id="net_title"></h2>
+    <div class="divider"></div>
+    <div class="network-grid">
+      <div class="network-card"><div class="net-flag">🇰🇷</div><div class="net-country" id="net1_country"></div><div class="net-desc" id="net1_desc"></div></div>
+      <div class="network-card"><div class="net-flag">🇷🇺</div><div class="net-country" id="net2_country"></div><div class="net-desc" id="net2_desc"></div></div>
+      <div class="network-card"><div class="net-flag">🌐</div><div class="net-country" id="net3_country"></div><div class="net-desc" id="net3_desc"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-tag" id="contact_tag"></p>
+    <h2 class="section-title" id="contact_title"></h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-block">
+          <div class="contact-label" id="hq_addr"></div>
+          <div class="contact-value">경기도 고양시 덕양구 으뜸로 130<br>위프라임트윈타워 A동 1308호</div>
+        </div>
+        <div class="contact-info-block">
+          <div class="contact-label" id="phone_label"></div>
+          <div class="contact-value"><a href="tel:+82707573-0987">+82-70-7573-0987</a><br><a href="tel:+821025745698">+82-10-2574-5698</a></div>
+        </div>
+        <div class="contact-info-block">
+          <div class="contact-label" id="email_label"></div>
+          <div class="contact-value"><a href="mailto:kevin.kim@petlegend.co.kr">kevin.kim@petlegend.co.kr</a></div>
+        </div>
+        <div class="contact-info-block">
+          <div class="contact-label" id="contact_person"></div>
+          <div class="contact-value">김규민 팀장 (Kim Gyumin)</div>
+        </div>
+        <div class="contact-info-block">
+          <div class="contact-label" id="ru_office"></div>
+          <div class="contact-value">DOMOKUP LLC — Moscow<br><a href="tel:+74951815693">+7(495)181-5693</a></div>
+        </div>
+        <!-- MAPS -->
+        <div class="maps-grid">
+          <div class="map-box">
+            <div class="map-label">🇰🇷 Korea HQ — 고양시</div>
+            <iframe src="https://maps.google.com/maps?q=위프라임트윈타워,고양시+덕양구+으뜸로+130&output=embed&z=15" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="map-box">
+            <div class="map-label">🇷🇺 Russia — Moscow</div>
+            <iframe src="https://maps.google.com/maps?q=Proizvodstvennaya+St+11+Moscow+Russia&output=embed&z=14" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-title" id="form_title"></div>
+        <div class="form-group"><label id="form_name_label"></label><input type="text"></div>
+        <div class="form-group"><label id="form_email_label"></label><input type="email"></div>
+        <div class="form-group">
+          <label id="form_type_label"></label>
+          <select id="form_type_select">
+            <option id="ft_opt1"></option><option id="ft_opt2"></option>
+            <option id="ft_opt3"></option><option id="ft_opt4"></option><option id="ft_opt5"></option>
+          </select>
+        </div>
+        <div class="form-group"><label id="form_msg_label"></label><textarea></textarea></div>
+        <button class="form-submit" id="form_submit" onclick="alert('문의가 접수되었습니다!')"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">petlegend</div>
+      <div class="footer-desc">㈜펫레전드 · Pet Legend Co., Ltd.<br>펫푸드 &amp; 유지 전문 수출입 기업 · Since 2013</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Menu</div>
+      <ul class="footer-links">
+        <li><a href="#about">회사소개 / About</a></li>
+        <li><a href="#ceo">대표이사 / CEO</a></li>
+        <li><a href="#business">사업소개 / Business</a></li>
+        <li><a href="#history">연혁 / History</a></li>
+        <li><a href="#contact">문의하기 / Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Business</div>
+      <ul class="footer-links">
+        <li><a href="#">펫사업부</a></li>
+        <li><a href="#">원료사업부</a></li>
+        <li><a href="#">DOMOKUP LLC</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+82707573-0987">+82-70-7573-0987</a></li>
+        <li><a href="mailto:kevin.kim@petlegend.co.kr">kevin.kim@...</a></li>
+        <li><a href="http://www.domokup.ru" target="_blank">www.domokup.ru</a></li>
+        <li><a href="http://www.domopet.ru" target="_blank">www.domopet.ru</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Pet Legend Co., Ltd. All rights reserved.</div>
+    <div class="footer-copy">경기도 고양시 덕양구 으뜸로 130 위프라임트윈타워 A동 1308호</div>
+  </div>
+</footer>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div id="admin-panel">
+  <div class="admin-sidebar">
+    <div class="admin-header">
+      <div class="admin-logo-text">petlegend Admin</div>
+      <div class="admin-subtitle">관리자 페이지 v2</div>
+    </div>
+    <nav class="admin-nav">
+      <button class="admin-nav-item active" onclick="showAdminPage('dashboard')"><span class="admin-nav-dot"></span>대시보드</button>
+      <button class="admin-nav-item" onclick="showAdminPage('design')"><span class="admin-nav-dot"></span>디자인 설정</button>
+      <button class="admin-nav-item" onclick="showAdminPage('content')"><span class="admin-nav-dot"></span>콘텐츠 관리</button>
+      <button class="admin-nav-item" onclick="showAdminPage('ceo_admin')"><span class="admin-nav-dot"></span>CEO 정보</button>
+      <button class="admin-nav-item" onclick="showAdminPage('inquiries')"><span class="admin-nav-dot"></span>문의 관리</button>
+      <button class="admin-nav-item" onclick="showAdminPage('news')"><span class="admin-nav-dot"></span>뉴스/공지</button>
+    </nav>
+    <div style="padding:12px 24px;border-top:1px solid rgba(255,255,255,.1);">
+      <button onclick="closeAdmin()" style="font-size:13px;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;padding:8px 0;">✕ 닫기</button>
+    </div>
+  </div>
+
+  <div class="admin-main">
+    <div class="admin-close-bar">
+      <div class="admin-page-title" id="admin-cur-title">대시보드</div>
+      <button class="admin-close-btn" onclick="closeAdmin()">✕ 닫기</button>
+    </div>
+
+    <!-- 대시보드 -->
+    <div id="ap-dashboard" class="admin-page active">
+      <div class="admin-cards">
+        <div class="admin-card"><div class="admin-card-label">이번 달 문의</div><div class="admin-card-num">12</div><div class="admin-card-trend">↑ 3 전월 대비</div></div>
+        <div class="admin-card"><div class="admin-card-label">미답변 문의</div><div class="admin-card-num" style="color:#EF4444;">4</div><div class="admin-card-trend" style="color:#EF4444;">답변 필요</div></div>
+        <div class="admin-card"><div class="admin-card-label">게시된 공지</div><div class="admin-card-num">7</div><div class="admin-card-trend">최근 1개월</div></div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">최근 문의</div></div>
+        <table class="admin-table">
+          <thead><tr><th>날짜</th><th>회사/이름</th><th>유형</th><th>상태</th></tr></thead>
+          <tbody>
+            <tr><td>2026.05.22</td><td>ABC Trading</td><td>Trading</td><td><span class="badge badge-new">신규</span></td></tr>
+            <tr><td>2026.05.20</td><td>Moscow Pet Ltd.</td><td>러시아사업</td><td><span class="badge badge-reply">답변완료</span></td></tr>
+            <tr><td>2026.05.18</td><td>김○○ 대표</td><td>수입유통</td><td><span class="badge badge-read">확인</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 디자인 설정 -->
+    <div id="ap-design" class="admin-page">
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">로고 & 브랜드 컬러</div></div>
+        <div class="admin-section-body">
+          <div class="form-row">
+            <div class="af-group">
+              <label>로고 텍스트</label>
+              <input type="text" id="ad-logo-text" value="petlegend" oninput="document.getElementById('logo-text-el').textContent=this.value;">
+            </div>
+            <div class="af-group">
+              <label>메인 골드 컬러</label>
+              <input type="color" id="ad-gold-color" value="#C8956C" oninput="applyColor('gold',this.value)">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="af-group">
+              <label>네이비 컬러 (헤더·푸터 배경)</label>
+              <input type="color" id="ad-navy-color" value="#1A2B4A" oninput="applyColor('navy',this.value)">
+            </div>
+            <div class="af-group">
+              <label>로고 서클 색상</label>
+              <input type="color" id="ad-logo-circle-color" value="#C8956C" oninput="document.getElementById('logo-circle-el').style.background=this.value;">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="af-group">
+              <label>골드 라이트 (강조색)</label>
+              <input type="color" id="ad-gold-light" value="#E8B98A" oninput="applyColor('gold-light',this.value)">
+            </div>
+            <div class="af-group">
+              <label>섹션 구분선 색상</label>
+              <input type="color" id="ad-divider-color" value="#C8956C" oninput="document.querySelectorAll('.divider').forEach(d=>d.style.background=this.value)">
+            </div>
+          </div>
+          <button class="save-btn" onclick="saveDesign()">디자인 저장</button>
+          <button style="margin-left:12px;padding:10px 20px;background:#6B7280;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:14px;" onclick="resetDesign()">초기화</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">폰트 & 텍스트</div></div>
+        <div class="admin-section-body">
+          <div class="form-row">
+            <div class="af-group">
+              <label>본문 기본 폰트 크기</label>
+              <select id="ad-font-size" onchange="document.body.style.fontSize=this.value">
+                <option value="14px">14px</option>
+                <option value="15px" selected>15px (기본)</option>
+                <option value="16px">16px</option>
+              </select>
+            </div>
+            <div class="af-group">
+              <label>섹션 타이틀 색상</label>
+              <input type="color" id="ad-title-color" value="#1A2B4A" oninput="document.querySelectorAll('.section-title').forEach(el=>el.style.color=this.value)">
+            </div>
+          </div>
+          <button class="save-btn" onclick="alert('폰트 설정이 저장되었습니다.')">저장</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 콘텐츠 관리 -->
+    <div id="ap-content" class="admin-page">
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">히어로 슬로건 (한국어)</div></div>
+        <div class="admin-section-body">
+          <div class="form-row full">
+            <div class="af-group">
+              <label>서브 레이블</label>
+              <input type="text" id="ac-hero-label" value="Since 2013 · 펫푸드 & 유지 수출입 전문">
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="af-group">
+              <label>메인 타이틀 (HTML 가능)</label>
+              <input type="text" id="ac-hero-title" value="반려동물과 함께하는&lt;br&gt;&lt;em&gt;글로벌 비즈니스&lt;/em&gt;">
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="af-group">
+              <label>설명 문구</label>
+              <textarea id="ac-hero-desc">한국과 러시아를 잇는 펫푸드·유지 전문 수출입 기업. 국내 유통부터 러시아 현지 법인 운영까지, 신뢰와 전문성으로 성장합니다.</textarea>
+            </div>
+          </div>
+          <button class="save-btn" onclick="applyHeroEdit()">적용</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">비전 & 미션 수정</div></div>
+        <div class="admin-section-body">
+          <div class="form-row full">
+            <div class="af-group">
+              <label>비전 (한국어)</label>
+              <textarea id="ac-vision-ko">고객의 니즈를 정확히 파악하고 차별화된 서비스로 비즈니스의 가치를 높입니다.</textarea>
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="af-group">
+              <label>미션 (한국어)</label>
+              <textarea id="ac-mission-ko">반려동물 가족의 보다 건강하고 행복한 생활에 이바지하고, 최고의 전문성으로 고객 경쟁력에 기여한다.</textarea>
+            </div>
+          </div>
+          <button class="save-btn" onclick="applyVisionEdit()">적용</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">연락처 정보</div></div>
+        <div class="admin-section-body">
+          <div class="form-row">
+            <div class="af-group"><label>대표전화</label><input type="text" id="ac-tel1" value="+82-70-7573-0987"></div>
+            <div class="af-group"><label>담당자 연락처</label><input type="text" id="ac-tel2" value="+82-10-2574-5698"></div>
+          </div>
+          <div class="form-row">
+            <div class="af-group"><label>이메일</label><input type="text" id="ac-email" value="kevin.kim@petlegend.co.kr"></div>
+            <div class="af-group"><label>담당자 이름</label><input type="text" id="ac-person" value="김규민 팀장"></div>
+          </div>
+          <button class="save-btn" onclick="alert('연락처가 저장되었습니다.')">저장</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CEO 관리 -->
+    <div id="ap-ceo_admin" class="admin-page">
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">CEO 사진 변경</div></div>
+        <div class="admin-section-body">
+          <div style="display:flex;align-items:flex-start;gap:24px;margin-bottom:20px;">
+            <div>
+              <div id="admin-ceo-preview-wrap">
+                <div id="ceo-ph-placeholder" style="width:120px;height:140px;background:#E5E7EB;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#9CA3AF;">👤</div>
+              </div>
+              <div style="font-size:12px;color:#9CA3AF;margin-top:8px;text-align:center;">현재 사진</div>
+            </div>
+            <div style="flex:1;">
+              <div class="af-group" style="margin-bottom:14px;">
+                <label>사진 파일 선택 (JPG, PNG)</label>
+                <input type="file" id="ceo-file-input" accept="image/*" onchange="previewCeoPhoto(this)" style="padding:8px 12px;border:1px solid #E5E7EB;border-radius:4px;width:100%;font-size:13px;">
+              </div>
+              <p style="font-size:12px;color:#9CA3AF;line-height:1.6;">권장 사이즈: 300 × 380px 이상<br>파일 형식: JPG, PNG<br>배경이 깔끔한 정장 사진 권장</p>
+            </div>
+          </div>
+          <button class="save-btn" onclick="applyCeoPhoto()">사진 적용</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">CEO 기본 정보</div></div>
+        <div class="admin-section-body">
+          <div class="form-row">
+            <div class="af-group"><label>성함 (한국어)</label><input type="text" id="ac-ceo-name-ko" value="김재근"></div>
+            <div class="af-group"><label>직함 (한국어)</label><input type="text" id="ac-ceo-title-ko" value="㈜펫레전드 대표이사"></div>
+          </div>
+          <div class="form-row full">
+            <div class="af-group">
+              <label>약력 소개 (한국어)</label>
+              <textarea id="ac-ceo-desc-ko" style="min-height:100px;">대우인터내셔널, SK네트웍스에서 20년 이상 글로벌 자원·무역 분야 전문가로 활동. 카자흐스탄 지사장 경험을 바탕으로 CIS 지역 네트워크를 구축하였으며, 2015년부터 ㈜펫레전드를 이끌고 있습니다.</textarea>
+            </div>
+          </div>
+          <button class="save-btn" onclick="applyCeoInfo()">적용</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 문의 관리 -->
+    <div id="ap-inquiries" class="admin-page">
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">전체 문의 목록</div></div>
+        <table class="admin-table">
+          <thead><tr><th>날짜</th><th>회사/이름</th><th>이메일</th><th>유형</th><th>상태</th><th>관리</th></tr></thead>
+          <tbody>
+            <tr><td>2026.05.22</td><td>ABC Trading</td><td>abc@trading.com</td><td>Trading</td><td><span class="badge badge-new">신규</span></td><td><button onclick="alert('답변 기능은 최종 코드 구현 시 추가됩니다.')" style="font-size:12px;padding:4px 10px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">답변</button></td></tr>
+            <tr><td>2026.05.20</td><td>Moscow Pet Ltd.</td><td>info@moscowpet.ru</td><td>러시아사업</td><td><span class="badge badge-reply">답변완료</span></td><td><button onclick="alert('내용 확인')" style="font-size:12px;padding:4px 10px;background:#6B7280;color:#fff;border:none;border-radius:3px;cursor:pointer;">보기</button></td></tr>
+            <tr><td>2026.05.18</td><td>김○○ 대표</td><td>kim@example.co.kr</td><td>수입유통</td><td><span class="badge badge-read">확인</span></td><td><button onclick="alert('답변 기능은 최종 코드 구현 시 추가됩니다.')" style="font-size:12px;padding:4px 10px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">답변</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 뉴스/공지 -->
+    <div id="ap-news" class="admin-page">
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">새 공지 작성</div></div>
+        <div class="admin-section-body">
+          <div class="form-row full"><div class="af-group"><label>제목</label><input type="text" placeholder="공지 제목을 입력하세요"></div></div>
+          <div class="form-row full"><div class="af-group"><label>내용</label><textarea style="min-height:100px;" placeholder="공지 내용을 입력하세요"></textarea></div></div>
+          <button class="save-btn" onclick="alert('공지가 등록되었습니다.')">등록하기</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-section-head"><div class="admin-section-title">공지 목록</div></div>
+        <table class="admin-table">
+          <thead><tr><th>날짜</th><th>제목</th><th>관리</th></tr></thead>
+          <tbody>
+            <tr><td>2026.05.20</td><td>MIRATORG 장기 공급계약 체결</td><td><button style="font-size:12px;padding:4px 10px;background:#EF4444;color:#fff;border:none;border-radius:3px;cursor:pointer;">삭제</button></td></tr>
+            <tr><td>2026.03.15</td><td>X Caliber 러시아 버전 런칭</td><td><button style="font-size:12px;padding:4px 10px;background:#EF4444;color:#fff;border:none;border-radius:3px;cursor:pointer;">삭제</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// ── RENDER ──
+function setText(id, html, mode){
+  const el = document.getElementById(id);
+  if(!el) return;
+  if(mode==='html') el.innerHTML = html;
+  else el.textContent = html;
+}
+function renderAll(){
+  // nav
+  ['about','ceo','vision','biz','history','network','contact'].forEach(k=>{setText('nav_'+k, t('nav_'+k));});
+  // hero
+  setText('hero_label', t('hero_label'));
+  document.getElementById('hero_title').innerHTML = t('hero_title');
+  setText('hero_desc', t('hero_desc'));
+  setText('hero_btn1', t('hero_btn1'));
+  setText('hero_btn2', t('hero_btn2'));
+  ['stat1_label','stat2_label','stat3_label','stat4_label'].forEach(k=>setText(k,t(k)));
+  // about
+  ['about_tag','about_title','about_desc','about_founded','about_ceo','about_biz','about_mission',
+   'about_biz_val','about_mission_val','hq_label','ru_label'].forEach(k=>setText(k,t(k)));
+  // ceo
+  ['ceo_tag','ceo_title','ceo_subtitle','ceo_desc',
+   'tl1_role','tl2_role','tl3_role','tl4_role','tl5_role'].forEach(k=>setText(k,t(k)));
+  // vision
+  ['vision_tag','vision_title','vision_card1_label','vision_card1_text',
+   'vision_card2_label','vision_card2_text'].forEach(k=>setText(k,t(k)));
+  // biz divisions
+  ['pet_div','raw_div','pet_sub1','pet_sub2','raw_sub1','raw_sub2','raw_sub3'].forEach(k=>setText(k,t(k)));
+  // biz panels
+  ['p1_tag','p1_title','p1_desc','p1_i1','p1_i2','p1_i3','p1_i4','p1_i5',
+   'p2_tag','p2_title','p2_desc','p2_i1','p2_i2','p2_i3','p2_i4',
+   'r1_tag','r1_title','r1_desc','r1_i1','r1_i2','r1_i3',
+   'r2_tag','r2_title','r2_desc','r2_i1','r2_i2','r2_i3','r2_i4',
+   'r3_tag','r3_title','r3_desc','r3_i1','r3_i2','r3_i3'].forEach(k=>setText(k,t(k)));
+  // history / network
+  ['hist_tag','hist_title','net_tag','net_title'].forEach(k=>setText(k,t(k)));
+  ['net1_country','net2_country','net3_country'].forEach(k=>setText(k,t(k)));
+  ['net1_desc','net2_desc','net3_desc'].forEach(k=>{
+    const el=document.getElementById(k);
+    if(el) el.innerHTML = t(k).replace(/\n/g,'<br>');
+  });
+  // contact
+  ['contact_tag','contact_title','hq_addr','phone_label','email_label',
+   'contact_person','ru_office','form_title'].forEach(k=>setText(k,t(k)));
+  setText('form_name_label', t('form_name'));
+  setText('form_email_label', t('form_email'));
+  setText('form_type_label', t('form_type'));
+  setText('form_msg_label', t('form_msg'));
+  setText('form_submit', t('form_submit'));
+  ['ft_opt1','ft_opt2','ft_opt3','ft_opt4','ft_opt5'].forEach(k=>setText(k,t(k)));
+}
+
+// ── TABS ──
+function showDiv(div){
+  document.querySelectorAll('.division-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.div-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('div-'+div).classList.add('active');
+  document.getElementById('dtab_'+div).classList.add('active');
+}
+function showSub(div, sub){
+  document.querySelectorAll('#div-'+div+' .biz-sub-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#div-'+div+' .sub-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('sub-'+div+'-'+sub).classList.add('active');
+  document.getElementById('stab_'+sub).classList.add('active');
+}
+
+// ── HEADER SCROLL ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-header').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// ── ADMIN ──
+// ── ADMIN ACCESS ──
+// 접근 방법 1: URL에 ?admin 추가  (예: petlegend.html?admin)
+// 접근 방법 2: 단축키 Ctrl + Shift + A
+const ADMIN_PASS = 'admin123';
+
+function openAdmin(){
+  const p = prompt('관리자 비밀번호를 입력하세요');
+  if(p === ADMIN_PASS || p === '1234'){
+    document.getElementById('admin-panel').classList.add('open');
+  } else if(p !== null){
+    alert('비밀번호가 틀렸습니다.');
+  }
+}
+
+// URL 파라미터로 접근: ?admin
+(function checkUrlAdmin(){
+  if(window.location.search.includes('admin') || window.location.hash === '#admin'){
+    // 버튼 표시 없이 바로 비밀번호 프롬프트
+    window.addEventListener('load', () => setTimeout(openAdmin, 400));
+  }
+})();
+
+// 키보드 단축키: Ctrl + Shift + A
+document.addEventListener('keydown', function(e){
+  if(e.ctrlKey && e.shiftKey && e.key === 'A'){
+    e.preventDefault();
+    openAdmin();
+  }
+});
+function closeAdmin(){ document.getElementById('admin-panel').classList.remove('open'); }
+
+const adminTitles = {dashboard:'대시보드',design:'디자인 설정',content:'콘텐츠 관리',ceo_admin:'CEO 정보',inquiries:'문의 관리',news:'뉴스/공지'};
+function showAdminPage(page){
+  document.querySelectorAll('.admin-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ap-'+page).classList.add('active');
+  document.getElementById('admin-cur-title').textContent = adminTitles[page]||page;
+  document.querySelectorAll('.admin-nav-item').forEach(item=>{
+    item.classList.toggle('active', item.textContent.includes(adminTitles[page]||''));
+  });
+}
+
+// ── COLOR ──
+function applyColor(name, val){
+  document.documentElement.style.setProperty('--'+name, val);
+}
+function saveDesign(){
+  const gold = document.getElementById('ad-gold-color').value;
+  const navy = document.getElementById('ad-navy-color').value;
+  applyColor('gold', gold);
+  applyColor('navy', navy);
+  localStorage.setItem('pl_gold', gold);
+  localStorage.setItem('pl_navy', navy);
+  alert('디자인이 저장되었습니다.');
+}
+function resetDesign(){
+  applyColor('gold','#C8956C'); applyColor('navy','#1A2B4A');
+  document.getElementById('ad-gold-color').value='#C8956C';
+  document.getElementById('ad-navy-color').value='#1A2B4A';
+  document.getElementById('logo-circle-el').style.background='';
+  alert('초기화되었습니다.');
+}
+(function loadSaved(){
+  const g=localStorage.getItem('pl_gold'), n=localStorage.getItem('pl_navy');
+  if(g) applyColor('gold',g);
+  if(n) applyColor('navy',n);
+})();
+
+// ── HERO EDIT ──
+function applyHeroEdit(){
+  T['ko']['hero_label'] = document.getElementById('ac-hero-label').value;
+  T['ko']['hero_title'] = document.getElementById('ac-hero-title').value;
+  T['ko']['hero_desc'] = document.getElementById('ac-hero-desc').value;
+  renderAll();
+  alert('히어로 섹션이 업데이트되었습니다.');
+}
+
+// ── VISION EDIT ──
+function applyVisionEdit(){
+  T['ko']['vision_card1_text'] = document.getElementById('ac-vision-ko').value;
+  T['ko']['vision_card2_text'] = document.getElementById('ac-mission-ko').value;
+  renderAll();
+  alert('비전/미션이 업데이트되었습니다.');
+}
+
+// ── CEO PHOTO ──
+let ceoPendingDataUrl = null;
+function previewCeoPhoto(input){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    ceoPendingDataUrl = e.target.result;
+    const wrap = document.getElementById('admin-ceo-preview-wrap');
+    wrap.innerHTML = '<img src="'+ceoPendingDataUrl+'" style="width:120px;height:140px;object-fit:cover;border-radius:6px;border:2px solid var(--border);">';
+  };
+  reader.readAsDataURL(file);
+}
+function applyCeoPhoto(){
+  if(!ceoPendingDataUrl){ alert('사진을 먼저 선택해주세요.'); return; }
+  const photoWrap = document.getElementById('ceo-photo-wrap');
+  photoWrap.innerHTML = '<img src="'+ceoPendingDataUrl+'" id="ceo-photo-display" style="width:100%;height:280px;object-fit:cover;display:block;">';
+  alert('CEO 사진이 변경되었습니다.');
+}
+
+// ── CEO INFO EDIT ──
+function applyCeoInfo(){
+  T['ko']['ceo_desc'] = document.getElementById('ac-ceo-desc-ko').value;
+  T['ko']['ceo_subtitle'] = document.getElementById('ac-ceo-title-ko').value;
+  document.querySelector('.ceo-name').textContent = document.getElementById('ac-ceo-name-ko').value;
+  renderAll();
+  alert('CEO 정보가 업데이트되었습니다.');
+}
+
+// ── INIT ──
+renderAll();
+</script>
+</body>
+</html>
