@@ -1,83 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 보안 헤더 -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' 'unsafe-inline';
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;
+               img-src 'self' data: https:;
+               connect-src 'self' https://api.web3forms.com;
+               frame-ancestors 'none';">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
-      <!-- 보안 헤더 -->
-      <meta http-equiv="X-Frame-Options" content="DENY">
-      <meta http-equiv="X-Content-Type-Options" content="nosniff">
-      <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self';
-                 script-src 'self' 'unsafe-inline';
-                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-                 font-src 'self' https://fonts.gstatic.com;
-                 img-src 'self' data: https:;
-                 connect-src 'self' https://api.web3forms.com;
-                 frame-ancestors 'none';">
-      <meta http-equiv="Strict-Transport-Security" content="max-age=31536000">
-      <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- ★ 핵심 SEO 태그 ★ -->
+    <title>펫레전드 | 펫푸드·반려용품 러시아·CIS 수출입 전문기업 — Pet Legend Co., Ltd.</title>
+    <meta name="description" content="2013년 설립. 한국산 프리미엄 펫푸드·반려용품 러시아·CIS 수출 전문기업. 모스크바 현지법인 운영. 조이서(JOYSER) 국내 독점 공급, 동물성유지·사료원료 수입. B2B 거래처 모집 중." />
+    <meta name="keywords" content="펫레전드, 펫푸드 수출, 러시아 펫푸드, CIS 수출, 반려동물 사료 수출입, 조이서 JOYSER, 동물성유지 수입, 사료원료, 펫푸드 B2B, petlegend, 러시아 수출 대행" />
 
-      <!-- 기본 메타 -->
-      <title>펫레전드 | 펫푸드&반려용품 수출입 전문기업 - 러시아·CIS 시장 진출</title>
-      <meta name="description" content="2013년 설립, 펫레전드는 국내외 300여 종 펫푸드·반려용품을 유통하는 종합 기업입니다. 러시아·CIS·동남아시아 수출 전문 창구이자 미국·유럽 우수 제품 수입 파트너. B2B 거래 문의 환영합니다." />
-      <meta name="keywords" content="펫푸드 수출, 반려동물 사료 수입, 러시아 펫푸드 수출, 펫레전드, 사료 OEM, 반려용품 유통, CIS 수출, 조이서코리아" />
+    <!-- 검색엔진 크롤링 허용 -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="naverbot" content="index, follow" />
+    <meta name="yeti" content="index, follow" />
 
-      <!-- 검색엔진 허용 -->
-      <meta name="robots" content="index, follow" />
-      <meta name="googlebot" content="index, follow" />
+    <!-- 네이버 사이트 소유 확인 (네이버 서치어드바이저에서 발급받은 코드로 교체 필요) -->
+    <!-- <meta name="naver-site-verification" content="여기에_네이버_인증코드_입력" /> -->
 
-      <!-- Open Graph (카카오톡/페이스북 공유 미리보기) -->
-      <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="펫레전드" />
-      <meta property="og:title" content="펫레전드 | 펫푸드&반려용품 수출입 전문기업" />
-      <meta property="og:description" content="국내외 300여 종 펫푸드·반려용품 종합유통, 러시아·CIS·동남아 수출 전문 파트너" />
-      <meta property="og:url" content="https://petlegend.co.kr/" />
-      <meta property="og:image" content="https://petlegend.co.kr/og-image.jpg" />
-      <meta property="og:locale" content="ko_KR" />
+    <!-- 구글 사이트 소유 확인 (Google Search Console에서 발급받은 코드로 교체 필요) -->
+    <!-- <meta name="google-site-verification" content="여기에_구글_인증코드_입력" /> -->
 
-      <!-- 트위터/X 카드 -->
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="펫레전드 | 펫푸드&반려용품 수출입 전문기업" />
-      <meta name="twitter:description" content="국내외 300여 종 펫푸드·반려용품 종합유통, 러시아·CIS·동남아 수출 전문 파트너" />
+    <!-- 정식 URL (canonical) -->
+    <link rel="canonical" href="https://petlegend.co.kr/" />
 
-      <!-- 정식 도메인 -->
-      <link rel="canonical" href="https://petlegend.co.kr/" />
+    <!-- 다국어 페이지 명시 (hreflang) -->
+    <link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/" />
+    <link rel="alternate" hreflang="en" href="https://petlegend.co.kr/" />
+    <link rel="alternate" hreflang="ru" href="https://petlegend.co.kr/" />
+    <link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/" />
 
-      <!-- 구조화 데이터 (Schema.org) - AI 검색/구글 회사정보 인식용 -->
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "펫레전드",
-        "alternateName": "Pet Legend Co., LTD.",
-        "url": "https://petlegend.co.kr",
-        "logo": "https://petlegend.co.kr/logo.png",
-        "description": "2013년 설립된 펫푸드·반려용품 종합유통 기업. 국내 펫제품 공급사의 수출창구로 러시아, CIS, 동남아시아 지역으로 수출하며, 북미·유럽 우수 펫 제품을 수입·공급.",
-        "foundingDate": "2013",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "KR"
+    <!-- Open Graph (카카오·페이스북·라인 공유 미리보기) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="펫레전드 Pet Legend" />
+    <meta property="og:title" content="펫레전드 | 펫푸드·반려용품 러시아·CIS 수출입 전문기업" />
+    <meta property="og:description" content="2013년 설립. 한국산 프리미엄 펫푸드·반려용품 러시아·CIS 수출 전문기업. 모스크바 현지법인 운영. B2B 거래처 모집 중." />
+    <meta property="og:url" content="https://petlegend.co.kr/" />
+    <meta property="og:image" content="https://petlegend.co.kr/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="펫레전드 — 한국·러시아 펫푸드 수출입 전문기업" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="ru_RU" />
+
+    <!-- 트위터/X 카드 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="펫레전드 | 펫푸드·반려용품 러시아·CIS 수출입 전문기업" />
+    <meta name="twitter:description" content="2013년 설립. 한국산 프리미엄 펫푸드·반려용품 러시아·CIS 수출 전문기업. 모스크바 현지법인 운영." />
+    <meta name="twitter:image" content="https://petlegend.co.kr/og-image.jpg" />
+
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- 구조화 데이터 (Schema.org) — 구글 지식패널·AI 검색 인식 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://petlegend.co.kr/#organization",
+          "name": "펫레전드",
+          "alternateName": ["Pet Legend Co., Ltd.", "주식회사 펫레전드", "㈜펫레전드"],
+          "url": "https://petlegend.co.kr",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://petlegend.co.kr/logo.png",
+            "width": 200,
+            "height": 200
+          },
+          "description": "2013년 설립된 펫푸드·반려용품 러시아·CIS 수출입 전문기업. 모스크바 현지법인(DOMOKUP LLC) 운영. 조이서(JOYSER) 국내 독점 공급, 동물성유지·사료원료 수입.",
+          "foundingDate": "2013-12",
+          "founder": {
+            "@type": "Person",
+            "name": "김재근",
+            "alternateName": "Richard Kim",
+            "jobTitle": "대표이사 · CEO"
+          },
+          "address": [
+            {
+              "@type": "PostalAddress",
+              "addressCountry": "KR",
+              "addressRegion": "경기도",
+              "addressLocality": "고양시",
+              "streetAddress": "덕양구 으뜸로 130 위프라임트윈타워 A동 1308호"
+            }
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+82-70-7573-0987",
+              "contactType": "customer service",
+              "areaServed": "KR",
+              "availableLanguage": ["Korean", "English", "Russian"]
+            }
+          ],
+          "sameAs": [
+            "https://www.facebook.com/petlegend.kr/",
+            "https://smartstore.naver.com/petlegend"
+          ],
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": 10
+          },
+          "areaServed": ["KR", "RU", "KZ", "UZ", "BY"],
+          "knowsAbout": ["펫푸드 수출", "반려동물 사료", "동물성유지 수입", "러시아 수출", "CIS 무역"]
         },
-        "sameAs": [
-          "https://www.facebook.com/petlegend.kr/",
-          "https://smartstore.naver.com/petlegend"
-        ]
-      }
-      </script>
+        {
+          "@type": "WebSite",
+          "@id": "https://petlegend.co.kr/#website",
+          "url": "https://petlegend.co.kr",
+          "name": "펫레전드",
+          "publisher": { "@id": "https://petlegend.co.kr/#organization" },
+          "inLanguage": ["ko", "en", "ru"],
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://petlegend.co.kr/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://petlegend.co.kr/#webpage",
+          "url": "https://petlegend.co.kr",
+          "name": "펫레전드 | 펫푸드·반려용품 러시아·CIS 수출입 전문기업",
+          "isPartOf": { "@id": "https://petlegend.co.kr/#website" },
+          "about": { "@id": "https://petlegend.co.kr/#organization" },
+          "description": "2013년 설립. 한국산 프리미엄 펫푸드·반려용품 러시아·CIS 수출 전문기업.",
+          "inLanguage": "ko",
+          "dateModified": "2026-06-23"
+        }
+      ]
+    }
+    </script>
 
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-      
-      <script type="module" crossorigin src="/assets/index-toL8tLyd.js"></script>
-      <link rel="stylesheet" crossorigin href="/assets/index-DX72MMEP.css">
-    </head>
-
-    <body>
-      
-      <div id="root"></div>
-      
-    </body>
-  </html>
-  
+    <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+    <script type="module" crossorigin src="/assets/index-toL8tLyd.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DX72MMEP.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
