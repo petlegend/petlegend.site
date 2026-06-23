@@ -1,5 +1,24 @@
+# 펫레전드 robots.txt — petlegend.co.kr
+
+# 구글봇
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+# 네이버봇
+User-agent: Yeti
+Allow: /
+Disallow: /api/
+
+# 빙봇
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+# 기타 모든 봇
 User-agent: *
 Allow: /
 Disallow: /api/
 
+# 사이트맵 위치
 Sitemap: https://petlegend.co.kr/sitemap.xml
