@@ -6,6 +6,20 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+      <!-- 보안 헤더 -->
+      <meta http-equiv="X-Frame-Options" content="DENY">
+      <meta http-equiv="X-Content-Type-Options" content="nosniff">
+      <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self' 'unsafe-inline';
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src 'self' https://fonts.gstatic.com;
+                 img-src 'self' data: https:;
+                 connect-src 'self' https://api.web3forms.com;
+                 frame-ancestors 'none';">
+      <meta http-equiv="Strict-Transport-Security" content="max-age=31536000">
+      <meta name="referrer" content="strict-origin-when-cross-origin">
+
       <!-- 기본 메타 -->
       <title>펫레전드 | 펫푸드&반려용품 수출입 전문기업 - 러시아·CIS 시장 진출</title>
       <meta name="description" content="2013년 설립, 펫레전드는 국내외 300여 종 펫푸드·반려용품을 유통하는 종합 기업입니다. 러시아·CIS·동남아시아 수출 전문 창구이자 미국·유럽 우수 제품 수입 파트너. B2B 거래 문의 환영합니다." />
