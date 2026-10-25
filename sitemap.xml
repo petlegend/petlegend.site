@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<!-- lastmod 는 실제 수정일로 (구글: 정확할 때만 사용, changefreq·priority 는 무시). 언어별 주소가 생기면 그때 hreflang 추가 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://petlegend.co.kr/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://petlegend.co.kr/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://petlegend.co.kr/" />
+    <lastmod>2026-10-25</lastmod>
   </url>
 </urlset>
