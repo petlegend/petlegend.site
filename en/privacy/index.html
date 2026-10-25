@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 보안 — GitHub Pages 는 서버 헤더를 못 쓰므로 페이지 안 CSP 가 실제 방어선.
+         X-Frame-Options·HSTS·frame-ancestors 는 페이지 안(meta)에서는 브라우저가 무시하므로 뺐다 (2026-10-25, HSTS 는 GitHub 이 HTTPS 강제로 처리) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' 'unsafe-inline' https://wcs.pstatic.net https://wcs.naver.net;
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;
+               img-src 'self' data: https:;
+               connect-src 'self' https://api.web3forms.com https://wcs.naver.com;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- 웹폰트 — 한 번에 병렬로 (2026-10-25 속도 개선). 쓰는 굵기만, 로고 글자는 그 글자만 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&text=petlegend&display=swap">
+
+    <!-- ★ 핵심 SEO 태그 ★ -->
+    <title>Privacy Policy | PET LEGEND</title>
+    <meta name="description" content="PET LEGEND CO., LTD. (the 'Company') processes personal information in accordance with the Personal Information Protection Act of Korea as follows." />
+    <meta name="keywords" content="펫레전드, 펫푸드 수출, 러시아 펫푸드, CIS 수출, 반려동물 사료 수출입, 조이서 JOYSER, 동물성유지 수입, 사료원료, 펫푸드 B2B, petlegend, 러시아 수출 대행" />
+
+    <!-- 검색엔진 크롤링 허용 -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- 구글 사이트 소유 확인 -->
+    <meta name="google-site-verification" content="4Px2BTo9Q6XgmQn0IOGMor9S3ywIIm-tZyHlIeAlPhQ" />
+
+    <!-- 네이버 사이트 소유 확인 (네이버 서치어드바이저 코드 받으면 입력) -->
+    <meta name="naver-site-verification" content="a76f41d137e4673ab751c44f63249534fffd5452" />
+
+    <!-- 정식 URL (canonical) -->
+    <link rel="canonical" href="https://petlegend.co.kr/en/privacy/" />
+    <link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/privacy/" />
+    <link rel="alternate" hreflang="en" href="https://petlegend.co.kr/en/privacy/" />
+    <link rel="alternate" hreflang="ru" href="https://petlegend.co.kr/ru/privacy/" />
+    <link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/privacy/" />
+
+    <!-- 다국어 hreflang 은 언어별 주소(/en/, /ru/)가 생기면 그때 넣는다 — 같은 주소를 가리키면 효과 없음 (구글 문서 2026-09-21) -->
+
+    <!-- Open Graph (카카오·페이스북·라인 공유 미리보기) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="펫레전드 Pet Legend" />
+    <meta property="og:title" content="Privacy Policy | PET LEGEND" />
+    <meta property="og:description" content="PET LEGEND CO., LTD. (the 'Company') processes personal information in accordance with the Personal Information Protection Act of Korea as follows." />
+    <meta property="og:url" content="https://petlegend.co.kr/en/privacy/" />
+    <meta property="og:image" content="https://petlegend.co.kr/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="펫레전드 — 한국·러시아 펫푸드 수출입 전문기업" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="ru_RU" />
+
+    <!-- 트위터/X 카드 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Privacy Policy | PET LEGEND" />
+    <meta name="twitter:description" content="PET LEGEND CO., LTD. (the 'Company') processes personal information in accordance with the Personal Information Protection Act of Korea as follows." />
+    <meta name="twitter:image" content="https://petlegend.co.kr/og-image.jpg" />
+
+    <!-- 파비콘 -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32 48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- 구조화 데이터 (Schema.org) — 구글 지식패널·AI 검색 인식 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://petlegend.co.kr/#organization",
+          "name": "펫레전드",
+          "alternateName": ["Pet Legend Co., Ltd.", "주식회사 펫레전드", "㈜펫레전드"],
+          "url": "https://petlegend.co.kr",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://petlegend.co.kr/logo.png",
+            "width": 200,
+            "height": 200
+          },
+          "description": "2013년 설립된 펫푸드·반려용품 러시아·CIS 수출입 전문기업. 모스크바 현지법인(DOMOKUP LLC) 운영. 조이서(JOYSER) 국내 독점 공급, 동물성유지·사료원료 수입.",
+          "foundingDate": "2013-12",
+          "founder": {
+            "@type": "Person",
+            "name": "김재근",
+            "alternateName": "Richard Kim",
+            "jobTitle": "대표이사 · CEO"
+          },
+          "address": [
+            {
+              "@type": "PostalAddress",
+              "addressCountry": "KR",
+              "addressRegion": "경기도",
+              "addressLocality": "고양시",
+              "streetAddress": "덕양구 으뜸로 130 위프라임트윈타워 A동 1308호"
+            }
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+82-70-7573-0987",
+              "contactType": "customer service",
+              "areaServed": "KR",
+              "availableLanguage": ["Korean", "English", "Russian"]
+            }
+          ],
+          "email": "webmaster@petlegend.co.kr",
+          "sameAs": [
+            "https://www.facebook.com/petlegend.kr/",
+            "https://smartstore.naver.com/petlegend",
+            "https://pf.kakao.com/_EGMJC"
+          ],
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": 10
+          },
+          "areaServed": ["KR", "RU", "KZ", "UZ", "BY"],
+          "knowsAbout": ["펫푸드 수출", "반려동물 사료", "동물성유지 수입", "러시아 수출", "CIS 무역"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://petlegend.co.kr/#website",
+          "url": "https://petlegend.co.kr",
+          "name": "펫레전드",
+          "publisher": { "@id": "https://petlegend.co.kr/#organization" },
+          "inLanguage": ["ko", "en", "ru"]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://petlegend.co.kr/#webpage",
+          "url": "https://petlegend.co.kr",
+          "name": "펫레전드 | 펫푸드·반려용품 러시아·CIS 수출입 전문기업",
+          "isPartOf": { "@id": "https://petlegend.co.kr/#website" },
+          "about": { "@id": "https://petlegend.co.kr/#organization" },
+          "description": "2013년 설립. 한국산 프리미엄 펫푸드·반려용품 러시아·CIS 수출 전문기업.",
+          "inLanguage": "ko",
+          "dateModified": "2026-10-25"
+        }
+      ]
+    }
+    </script>
+
+    <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+    <script type="module" crossorigin src="/assets/main-DMh59ueL.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-C8w-UNLI.js">
+    <link rel="modulepreload" crossorigin href="/assets/client-Cdj5-Xae.js">
+    <link rel="modulepreload" crossorigin href="/assets/router-DkKUZv97.js">
+    <link rel="stylesheet" crossorigin href="/assets/main-D-_lafsL.css">
+  </head>
+  <body>
+    <div id="root"><div class="pl-app" data-page="privacy"><header class="pl-nav "><div class="pl-nav__inner"><a href="/en/" class="pl-logo"><img src="/assets/logo_transparent-BEhdnPCY.svg" alt="petlegend" class="pl-logo__img"/><span class="pl-logo__word"><span class="pl-logo__since">SINCE 2013</span><span class="pl-logo__name">petlegend</span></span></a><nav class="pl-nav__items"><a href="/en/about/" class=""><span class="pl-nav__num">0<!-- -->1</span><span>About</span></a><a href="/en/ceo/" class=""><span class="pl-nav__num">0<!-- -->2</span><span>CEO</span></a><a href="/en/vision/" class=""><span class="pl-nav__num">0<!-- -->3</span><span>Vision</span></a><a href="/en/business/" class=""><span class="pl-nav__num">0<!-- -->4</span><span>Business</span></a><a href="/en/history/" class=""><span class="pl-nav__num">0<!-- -->5</span><span>History</span></a><a href="/en/network/" class=""><span class="pl-nav__num">0<!-- -->6</span><span>Network</span></a><a href="/en/contact/" class=""><span class="pl-nav__num">0<!-- -->7</span><span>Contact</span></a></nav><div class="pl-nav__right"><div class="pl-lang"><button class="" title="KR"><span class="pl-flag-wrap"><img class="pl-flag pl-flag--img" src="/assets/flag-kr-B5zY6s90.png" alt="대한민국" aria-hidden="true"/></span><span class="pl-lang__code">KR</span></button><button class="" title="RU"><span class="pl-flag-wrap"><svg class="pl-flag" viewBox="0 0 60 40" aria-hidden="true"><rect y="0" width="60" height="13.33" fill="#fff"></rect><rect y="13.33" width="60" height="13.34" fill="#0039A6"></rect><rect y="26.67" width="60" height="13.33" fill="#D52B1E"></rect></svg></span><span class="pl-lang__code">RU</span></button><button class="is-on" title="EN"><span class="pl-flag-wrap"><svg class="pl-flag" viewBox="0 0 60 40" aria-hidden="true"><rect x="0" y="0" width="60" height="3.076923076923077" fill="#B22234"></rect><rect x="0" y="3.076923076923077" width="60" height="3.076923076923077" fill="#fff"></rect><rect x="0" y="6.153846153846154" width="60" height="3.076923076923077" fill="#B22234"></rect><rect x="0" y="9.230769230769232" width="60" height="3.076923076923077" fill="#fff"></rect><rect x="0" y="12.307692307692308" width="60" height="3.076923076923077" fill="#B22234"></rect><rect x="0" y="15.384615384615385" width="60" height="3.076923076923077" fill="#fff"></rect><rect x="0" y="18.461538461538463" width="60" height="3.076923076923077" fill="#B22234"></rect><rect x="0" y="21.53846153846154" width="60" height="3.076923076923077" fill="#fff"></rect><rect x="0" y="24.615384615384617" width="60" height="3.076923076923077" fill="#B22234"></rect><rect x="0" y="27.692307692307693" width="60" height="3.076923076923077" fill="#fff"></rect><rect x="0" y="30.76923076923077" width="60" height="3.076923076923077" fill="#B22234"></rect><rect x="0" y="33.84615384615385" width="60" height="3.076923076923077" fill="#fff"></rect><rect x="0" y="36.92307692307693" width="60" height="3.076923076923077" fill="#B22234"></rect><rect x="0" y="0" width="24" height="21.53846153846154" fill="#3C3B6E"></rect><circle cx="3" cy="3" r="0.8" fill="#fff"></circle><circle cx="6.6" cy="3" r="0.8" fill="#fff"></circle><circle cx="10.2" cy="3" r="0.8" fill="#fff"></circle><circle cx="13.8" cy="3" r="0.8" fill="#fff"></circle><circle cx="17.4" cy="3" r="0.8" fill="#fff"></circle><circle cx="21" cy="3" r="0.8" fill="#fff"></circle><circle cx="3" cy="7" r="0.8" fill="#fff"></circle><circle cx="6.6" cy="7" r="0.8" fill="#fff"></circle><circle cx="10.2" cy="7" r="0.8" fill="#fff"></circle><circle cx="13.8" cy="7" r="0.8" fill="#fff"></circle><circle cx="17.4" cy="7" r="0.8" fill="#fff"></circle><circle cx="21" cy="7" r="0.8" fill="#fff"></circle><circle cx="3" cy="11" r="0.8" fill="#fff"></circle><circle cx="6.6" cy="11" r="0.8" fill="#fff"></circle><circle cx="10.2" cy="11" r="0.8" fill="#fff"></circle><circle cx="13.8" cy="11" r="0.8" fill="#fff"></circle><circle cx="17.4" cy="11" r="0.8" fill="#fff"></circle><circle cx="21" cy="11" r="0.8" fill="#fff"></circle><circle cx="3" cy="15" r="0.8" fill="#fff"></circle><circle cx="6.6" cy="15" r="0.8" fill="#fff"></circle><circle cx="10.2" cy="15" r="0.8" fill="#fff"></circle><circle cx="13.8" cy="15" r="0.8" fill="#fff"></circle><circle cx="17.4" cy="15" r="0.8" fill="#fff"></circle><circle cx="21" cy="15" r="0.8" fill="#fff"></circle><circle cx="3" cy="19" r="0.8" fill="#fff"></circle><circle cx="6.6" cy="19" r="0.8" fill="#fff"></circle><circle cx="10.2" cy="19" r="0.8" fill="#fff"></circle><circle cx="13.8" cy="19" r="0.8" fill="#fff"></circle><circle cx="17.4" cy="19" r="0.8" fill="#fff"></circle><circle cx="21" cy="19" r="0.8" fill="#fff"></circle></svg></span><span class="pl-lang__code">EN</span></button></div></div></div><div class="pl-nav__progress"><div style="width:0%"></div></div></header><main class="pl-main-fade"><section id="privacy" class="pl-privacy" data-screen-label="Privacy"><div class="pl-section__inner"><div class="pl-section__head"><span class="pl-tag ">Privacy Policy</span></div><h2 class="pl-h2 "><span>Privacy</span><span>Policy</span></h2><p class="pl-privacy__intro">PET LEGEND CO., LTD. (the &#x27;Company&#x27;) processes personal information in accordance with the Personal Information Protection Act of Korea as follows.</p><div class="pl-privacy__items"><div class="pl-privacy__item"><h3>1. What we collect and why</h3><p>Inquiry form: company/name, phone, email, inquiry type and message — used only to review and answer your inquiry.</p></div><div class="pl-privacy__item"><h3>2. Retention</h3><p>Kept for one year after we reply, then deleted. Deleted without delay on request.</p></div><div class="pl-privacy__item"><h3>3. Sharing</h3><p>We do not provide your information to third parties, except where required by law.</p></div><div class="pl-privacy__item"><h3>4. Processors and transfer abroad</h3><p>Form delivery is handled by Web3Forms (Web3Creative, India), passing through its overseas servers (Amazon Web Services) to the Company&#x27;s mailbox. To avoid this transfer, contact us by email (webmaster@petlegend.co.kr) or phone instead.</p></div><div class="pl-privacy__item"><h3>5. Your rights</h3><p>You may request access, correction, deletion or suspension of processing at any time via the contact below.</p></div><div class="pl-privacy__item"><h3>6. Cookies</h3><p>We currently use no analytics cookies. We will update this policy before introducing any.</p></div><div class="pl-privacy__item"><h3>7. Privacy officer</h3><p>Richard Kim, CEO · webmaster@petlegend.co.kr · +82 70 7573 0987</p></div></div><p class="pl-privacy__date">Effective: 25 October 2026</p></div></section></main><footer class="pl-foot"><div class="pl-foot__inner"><div class="pl-foot__top"><div><div class="pl-logo"><img src="/assets/logo_transparent-BEhdnPCY.svg" alt="petlegend" class="pl-logo__img"/><span class="pl-logo__word"><span class="pl-logo__since" style="color:var(--gold-light)">SINCE 2013</span><span class="pl-logo__name" style="color:var(--gold)">petlegend</span></span></div><p class="pl-foot__brand-desc">Pet food &amp; oils import/export — connecting Korea with Russia and the CIS. A promise kept since 2013.</p><div class="pl-foot__est">SEOUL ⇋ MOSCOW · KR · RU · CIS</div></div><div><div class="pl-foot__col-title">Company</div><ul class="pl-foot__links"><li><a href="/en/about/">About</a></li><li><a href="/en/ceo/">CEO</a></li><li><a href="/en/vision/">Vision · Mission</a></li><li><a href="/en/history/">History</a></li></ul></div><div><div class="pl-foot__col-title">Business</div><ul class="pl-foot__links"><li><a href="/en/business/#pet">Pet Division</a></li><li><a href="/en/business/#raw">Raw Materials</a></li><li><a href="/en/network/">Global Network</a></li></ul></div><div><div class="pl-foot__col-title">Contact</div><ul class="pl-foot__links"><li><a href="/en/contact/">Inquiry</a></li><li><a href="tel:+827075730987">+82 70 7573 0987</a></li><li><a href="mailto:webmaster@petlegend.co.kr">webmaster@petlegend.co.kr</a></li></ul></div></div><div class="pl-foot__bottom"><span>© 2026 PET LEGEND CO., LTD.</span><a class="pl-foot__privacy" href="/en/privacy/">Privacy Policy</a></div><div class="pl-foot__legal"><div class="pl-foot__legal-co">PET LEGEND CO., LTD.  ·  CEO Richard Kim  ·  WePrime Twin Tower A #1308, 130 Eutteum-ro, Deogyang-gu, Goyang 10544, Korea</div><p>This website and all of its content are the property of PET LEGEND CO., LTD. Unauthorized reproduction, copying, or distribution of any content is prohibited.</p><p>The PET LEGEND brand (trade name, trademarks, service marks, etc.) may be used solely by PET LEGEND CO., LTD.</p></div></div></footer><div class="pl-kakao-fab"><a href="https://pf.kakao.com/_EGMJC/chat" target="_blank" rel="noopener noreferrer" aria-label="카카오톡 상담 — Pet Legend 채널"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 3.5c-5.2 0-9.4 3.3-9.4 7.4 0 2.6 1.7 4.9 4.3 6.2l-1 3.8c-.1.3.3.6.6.4l4.5-3c.3 0 .7.1 1 .1 5.2 0 9.4-3.3 9.4-7.4S17.2 3.5 12 3.5z"></path></svg><span>KakaoTalk</span></a></div></div></div>
+  </body>
+</html>
