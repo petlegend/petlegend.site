@@ -57,6 +57,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/network/" />
   </url>
   <url>
+    <loc>https://petlegend.co.kr/news/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/news/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlegend.co.kr/en/news/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlegend.co.kr/ru/news/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/news/" />
+  </url>
+  <url>
     <loc>https://petlegend.co.kr/guide/</loc>
     <lastmod>2026-11-21</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/guide/" />
@@ -137,6 +145,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/network/" />
   </url>
   <url>
+    <loc>https://petlegend.co.kr/en/news/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/news/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlegend.co.kr/en/news/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlegend.co.kr/ru/news/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/news/" />
+  </url>
+  <url>
     <loc>https://petlegend.co.kr/en/guide/</loc>
     <lastmod>2026-11-21</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/guide/" />
@@ -215,6 +231,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://petlegend.co.kr/en/network/" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://petlegend.co.kr/ru/network/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/network/" />
+  </url>
+  <url>
+    <loc>https://petlegend.co.kr/ru/news/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlegend.co.kr/news/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlegend.co.kr/en/news/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlegend.co.kr/ru/news/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlegend.co.kr/news/" />
   </url>
   <url>
     <loc>https://petlegend.co.kr/ru/guide/</loc>
